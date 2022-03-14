@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Api Endpoints</title>
+<style>
+#customers {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+#customers td, #customers th {
+	border: 1px solid #ddd;
+	padding: 4px;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height:25px;
+}
+#customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+#customers tr:hover {
+	background-color: #ddd;
+}
+#customers th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+</head>
+
+<body>
+<table width="100vw" border="0" id="customers">
+  <tr>
+    <th width="10%"><strong>Module</strong></th>
+    <th width="30%"><strong>End Points</strong></th>
+    <th width="20%"><strong>Description</strong></th>
+    <th width="10%"><strong>Method</strong></th>
+    <th width="30%"><strong>Params</strong></th>
+  </tr>
+  <tr>
+    <td><strong>Authorization</strong></td>
+    <td>For Any EndPoints</td>
+    <td>Pass Authorization : Bearer $Token and Accept : application/json</td>
+    <td>Header</td>
+    <td>{'Authorization:string','Accept:application/json'}</td>
+  </tr>
+  <tr>
+    <td><strong>Registration</strong></td>
+    <td>http://3.1.104.121/api/register</td>
+    <td>Register new api user</td>
+    <td>POST</td>
+    <td>{'name:string','email:string','password:string','confirm_password:string'}</td>
+  </tr>
+  <tr>
+    <td><strong>Login</strong></td>
+    <td>http://3.1.104.121/api/login</td>
+    <td>Login api user</td>
+    <td>POST</td>
+    <td>{'username/email:string','password:string'}</td>
+  </tr>
+  <tr>
+    <td><strong>Size</strong></td>
+    <td>http://3.1.104.121/api/size</td>
+    <td>Get all sizes</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/size</td>
+    <td>Insert new Size</td>
+    <td>POST</td>
+    <td>{'size_code:float','size_name:varchar'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/size/{size_code}</td>
+    <td>Get single size information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/size/update/{size_code}</td>
+    <td>Update single size information</td>
+    <td>POST</td>
+    <td>{'size_name:varchar'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/size/delete/{size_code}</td>
+    <td>Delete single size information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><strong>Color</strong></td>
+    <td>http://3.1.104.121/api/color</td>
+    <td>Get all colors</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/color</td>
+    <td>Insert new color</td>
+    <td>POST</td>
+    <td>{'color_id:float','color_name:varchar'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/color/{color_id}</td>
+    <td>Get single color information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/color/update/{color_id}</td>
+    <td>Update single color information</td>
+    <td>POST</td>
+    <td>{'color_name:varchar'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/color/delete/{color_id}</td>
+    <td>Delete single color information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><strong>Category</strong></td>
+    <td>http://3.1.104.121/api/category</td>
+    <td>Get all categories</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/category</td>
+    <td>Insert new category</td>
+    <td>POST</td>
+    <td>{'category_id:float','category_name:varchar', 'parent_category_id:float', 'category_image:varchar', 'category_description:varchar', 'category_level:integer', 'category_type:char'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/category/{category_id}</td>
+    <td>Get single category information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/category/update/{category_id}</td>
+    <td>Update single category information</td>
+    <td>POST</td>
+    <td>{'category_name:varchar', 'parent_category_id:float', 'category_image:varchar', 'category_description:varchar', 'category_level:integer', 'category_type:char'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/category/delete/{category_id}</td>
+    <td>Delete single category information</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong>/var/www/html/remote</strong></td>
+    <td>Remote category folder location</td>
+    <td>PUT</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td><strong>Product</strong></td>
+    <td>http://3.1.104.121/api/product</td>
+    <td>Get all products</td>
+    <td>GET</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/product</td>
+    <td>Insert new product</td>
+    <td>POST</td>
+    <td>{'mcode:float','pdt_code:varchar','inventory_sku:flaot','pdt_name:string','pdt_short_description:string",
+'pdt_long_description:string','category_code:float','pdt_brand:varchar','regular_price:decimal','measurement_unit:string',
+      'has_size_color:string','is_feature_product:string','is_sale_product:false'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/product/{mcode}</td>
+    <td>Get single product information</td>
+    <td>GET</td>
+    <td>{'pdt_code:string'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/product/update/{mcode}</td>
+    <td>Update single product information</td>
+    <td>POST</td>
+    <td>{'mcode:float','pdt_code:varchar','inventory_sku:flaot','pdt_name:string','pdt_short_description:string",
+      'pdt_long_description:string','category_code:float','pdt_brand:varchar','regular_price:decimal','measurement_unit:string',
+            'has_size_color:string','is_feature_product:string','is_sale_product:false'}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>http://3.1.104.121/api/product/delete/{mcode}</td>
+    <td>Delete single product information</td>
+    <td>GET</td>
+    <td>{'pdt_code:string'}</td>
+  </tr>  
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong>/var/www/html/remote</strong></td>
+    <td>Remote category folder location</td>
+    <td>PUT</td>
+    <td>n/a</td>
+  </tr>  
+</table>
+</body>
+</html>

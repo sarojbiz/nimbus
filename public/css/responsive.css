@@ -1,0 +1,340 @@
+/* CSS Document */
+
+
+
+@media screen and (max-width: 1080px) {
+
+  .wrap{
+
+    width: 90%;
+
+    margin: 0 5%;
+
+  }
+
+  .header_main{
+
+    height: auto;
+
+  }
+
+}
+
+@media screen and (max-width: 990px) {
+
+  /**********************
+
+.slicknav_menu starts
+
+**********************/
+
+/*.all-category{
+
+  display: none;
+
+}*/
+
+.mobile_nav{
+
+  position: relative;
+
+}
+
+
+
+.slicknav_btn.slicknav_btn{
+
+  background: #fff;
+
+  margin-top: 20px;
+
+  position: absolute;
+
+  left: 0;
+
+  top: 30px;
+
+  z-index: 999999;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+.slicknav_nav.slicknav_nav{
+
+  width: 100%;
+
+  position: relative;
+
+  margin-top: 70px;
+
+  margin-bottom: 30px;
+
+}
+
+  .slicknav_menu.slicknav_menu{
+
+    display: block;
+
+    float: left;
+
+    padding: 0;
+
+    width: 100%;
+
+  }
+
+  .slicknav_nav li{
+
+    
+
+    border-bottom: 1px solid #eee;
+
+  }
+
+  .mobile_nav .slicknav_nav a{
+
+    color: #333;
+
+    padding: 8px 0;
+
+  }
+
+  .slicknav_parent.slicknav_open {
+
+    background: #f3f3f3;
+
+  }
+
+  .mobile_nav .slicknav_nav ion-icon{
+
+    display: none; 
+
+  }
+
+  .header .mobile_nav .sub-category, 
+
+  .header .mobile_nav .mega-menu{
+
+    width: 100%;
+
+    position: relative;
+
+    left: 0;
+
+    visibility: visible;
+
+    opacity: 1;
+
+    box-shadow: none;
+
+    border: 0;
+
+
+
+  }
+
+  .mobile_nav .slicknav_menu .slicknav_icon-bar{
+
+    background: rgb(70, 59, 59);
+
+  }
+
+  /**********************
+
+.slicknav_menu ends
+
+**********************/
+
+  .header-logo{
+
+    margin-left: 58px;
+
+  }
+
+  .all-category{
+
+    position: absolute;
+
+    left: 0;
+
+    top: 22px;
+
+  }
+
+
+
+  .header .right-bar{
+
+    right: 0;
+
+    top: -131px;
+
+    position: absolute;
+
+  }
+
+  .cat_heading{
+
+    display: inline-block;
+
+  }
+
+  .cat_heading span{
+
+    display: none;
+
+  }
+
+  .header .search-bar{
+
+    width: 100%;
+
+  }
+
+  .header .search-bar form{
+
+    width: 47%;
+
+  }
+
+  .header_bottom{
+
+    overflow: hidden;
+
+  }
+
+  .small-banner .single-banner{
+
+    margin: 0 0 20px;
+
+    text-align: center;
+
+  }
+
+  .footer_menu_item,
+
+  .footer_intro {
+
+    margin-bottom: 50px;
+
+  }
+
+
+
+  .product_gallery .show{
+
+    margin: 0 auto;  
+
+  }
+
+  .small-img{
+
+    margin: 20px auto;
+
+  }
+
+  .quickview-content{
+
+    margin-top: 50px;
+
+  }
+
+  .quickview-content .size .col-12{
+
+    margin-bottom: 20px;
+
+  }
+
+  .quickview-content .quantity{
+
+    margin-bottom: 20px;
+
+  }
+
+  .single-product{
+
+    margin-bottom: 20px;
+
+  }
+
+  .header .search-bar input{
+
+    width: 100%;
+
+  }
+
+  .account-sidebar{
+
+    margin-bottom: 50px;
+
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .header-logo{
+
+    margin-left: 25px;
+
+  }
+
+  .all-category{
+
+    padding-left: 10px;
+
+  }
+
+  .header .right-bar .icon_title{
+
+    display: none;
+
+  }
+
+  
+
+  .single-icon img{
+
+    width: 20px;
+
+  }
+
+  .header .right-bar ion-icon{
+
+    font-size: 23px;
+
+  }
+
+  .footer{
+
+    text-align: center;
+
+  }
+
+}
+
+
+
+@media screen and (max-width: 480px) {
+
+  
+
+  .header .right-bar .sinlge-bar{
+
+    margin-right: 10px;
+
+  }
+
+  .header .right-bar .sinlge-bar.shopping{
+
+    margin-right: 20px;
+
+  }
+
+
+
+}
+
