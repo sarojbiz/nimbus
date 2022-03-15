@@ -178,7 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class
+        Spatie\Permission\PermissionServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 
