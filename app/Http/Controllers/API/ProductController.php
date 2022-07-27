@@ -14,6 +14,7 @@ use Exception;
 use Illuminate\Validation\Rule;
 use Image;
 use File;
+use URL;
 
 
 class ProductController extends APIController
@@ -46,7 +47,8 @@ class ProductController extends APIController
                                 'regular_price' => round($data->inventorySimpleProduct->regular_price, 2),
                                 'sales_price' => round($data->inventorySimpleProduct->sales_price, 2),
                                 'inventory_sku' => $data->inventorySimpleProduct->inventory_sku,
-                                'barcode' => $data->inventorySimpleProduct->barcode
+                                'barcode' => $data->inventorySimpleProduct->barcode,
+                                'featured_image' => URL::asset('uploads/products/'.$data->feature_image)
                     ];
                 }
                 if( $data->variable_product ){
@@ -66,7 +68,8 @@ class ProductController extends APIController
                             'regular_price' => round($variable->regular_price, 2),
                             'sales_price' => round($variable->sales_price, 2),
                             'inventory_sku' => $variable->inventory_sku,
-                            'barcode' => $variable->barcode
+                            'barcode' => $variable->barcode,
+                            'featured_image' => URL::asset('uploads/products/'.$data->feature_image)
                         ];
                     }
                 }
