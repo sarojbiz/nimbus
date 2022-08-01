@@ -33,43 +33,55 @@ class ProductController extends APIController
             foreach($datas as $data) {
                 if( $data->simple_product && $data->inventorySimpleProduct ){
                     $products[] = [
-                                'mcode' => $data->mcode,
-                                'pdt_name' => $data->pdt_name,
-                                'category_name' => optional($data->parent)->category_name,
-                                'has_size_color' => $data->has_size_color ? 'Variable product' : 'Simple product',
-                                'brand' => optional($data->brand)->name,
-                                'sales_product' => $data->is_sales_product ? 'Yes' : 'No',
-                                'status' => GeneralStatus::fromValue((int) $data->status)->description,            
-                                //optional($data->pdt_brand)->category->parent,
-                                //Carbon::parse($data->created_at)->format('Y-m-d g:i A'),
-                                'size' => Size::where('id', $data->inventorySimpleProduct->size_id)->pluck('name')->first(),
-                                'color' => Color::where('id', $data->inventorySimpleProduct->color_id)->pluck('name')->first(),
-                                'regular_price' => round($data->inventorySimpleProduct->regular_price, 2),
-                                'sales_price' => round($data->inventorySimpleProduct->sales_price, 2),
-                                'inventory_sku' => $data->inventorySimpleProduct->inventory_sku,
-                                'barcode' => $data->inventorySimpleProduct->barcode,
-                                'featured_image' => URL::asset('uploads/products/'.$data->feature_image)
+                        'mcode' => $data->mcode,
+                        'title' => $data->pdt_name,
+                        'slug' => $data->slug,
+                        'parent' => optional($data->parent)->category_name,
+                        'children' => NULL,
+                        'image' => URL::asset('uploads/products/'.$data->feature_image),
+                        'has_size_color' => $data->has_size_color ? 'Variable product' : 'Simple product',
+                        'brand' => optional($data->brand)->name,
+                        'sales_product' => $data->is_sales_product ? 'Yes' : 'No',
+                        'status' => GeneralStatus::fromValue((int) $data->status)->description,    
+                        'size' => Size::where('id', $data->inventorySimpleProduct->size_id)->pluck('name')->first(),
+                        'color' => Color::where('id', $data->inventorySimpleProduct->color_id)->pluck('name')->first(),  
+                        'inventory_sku' => $data->inventorySimpleProduct->inventory_sku,
+                        'barcode' => $data->inventorySimpleProduct->barcode,      
+                        'original_price' => round($data->inventorySimpleProduct->regular_price, 2),
+                        'price' => round($data->inventorySimpleProduct->sales_price, 2),
+                        'discount' => NULL,
+                        'unit' => NULL,
+                        'quantity' => 100,
+                        'type' => NULL,
+                        'tag' => strtolower(optional($data->parent)->category_name),
+                        'description' => $data->short_description
                     ];
                 }
                 if( $data->variable_product ){
                     foreach( $data->inventoryProducts as $variable ){
                         $products[] = [
                             'mcode' => $data->mcode,
-                            'pdt_name' => $data->pdt_name,
-                            'category_name' => optional($data->parent)->category_name,
+                            'title' => $data->pdt_name,
+                            'slug' => $data->slug,
+                            'parent' => optional($data->parent)->category_name,
+                            'children' => NULL,
+                            'image' => URL::asset('uploads/products/'.$data->feature_image),
                             'has_size_color' => $data->has_size_color ? 'Variable product' : 'Simple product',
                             'brand' => optional($data->brand)->name,
                             'sales_product' => $data->is_sales_product ? 'Yes' : 'No',
-                            'status' => GeneralStatus::fromValue((int) $data->status)->description,            
-                            //optional($data->pdt_brand)->category->parent,
-                            //Carbon::parse($data->created_at)->format('Y-m-d g:i A'),
-                            'size' => Size::where('id', $variable->size_id)->pluck('name')->first(),
-                            'color' => Color::where('id', $variable->color_id)->pluck('name')->first(),
-                            'regular_price' => round($variable->regular_price, 2),
-                            'sales_price' => round($variable->sales_price, 2),
-                            'inventory_sku' => $variable->inventory_sku,
-                            'barcode' => $variable->barcode,
-                            'featured_image' => URL::asset('uploads/products/'.$data->feature_image)
+                            'status' => GeneralStatus::fromValue((int) $data->status)->description,    
+                            'size' => Size::where('id', $data->inventorySimpleProduct->size_id)->pluck('name')->first(),
+                            'color' => Color::where('id', $data->inventorySimpleProduct->color_id)->pluck('name')->first(),  
+                            'inventory_sku' => $data->inventorySimpleProduct->inventory_sku,
+                            'barcode' => $data->inventorySimpleProduct->barcode,      
+                            'original_price' => round($data->inventorySimpleProduct->regular_price, 2),
+                            'price' => round($data->inventorySimpleProduct->sales_price, 2),
+                            'discount' => NULL,
+                            'unit' => NULL,
+                            'quantity' => 100,
+                            'type' => NULL,
+                            'tag' => strtolower(optional($data->parent)->category_name),
+                            'description' => $data->short_description
                         ];
                     }
                 }
