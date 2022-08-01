@@ -52,7 +52,7 @@ class ProductController extends APIController
                         'discount' => NULL,
                         'unit' => NULL,
                         'quantity' => 100,
-                        'tag' => strtolower(optional($data->parent)->category_name),
+                        'tag' => optional($data->parent)->category_name,
                         'description' => $data->short_description
                     ];
                 }
@@ -69,16 +69,16 @@ class ProductController extends APIController
                             'brand' => optional($data->brand)->name,
                             'sales_product' => $data->is_sales_product ? 'Yes' : 'No',
                             'status' => GeneralStatus::fromValue((int) $data->status)->description,    
-                            'size' => Size::where('id', optional($data->variable->size_id))->pluck('name')->first(),
-                            'color' => Color::where('id', optional($data->variable->color_id))->pluck('name')->first(),  
-                            'inventory_sku' => $data->variable->inventory_sku,
-                            'barcode' => $data->variable->barcode,      
-                            'original_price' => round($data->variable->regular_price, 2),
-                            'price' => round($data->variable->sales_price, 2),
+                            'size' => Size::where('id', $variable->size_id)->pluck('name')->first(),
+                            'color' => Color::where('id', $variable->color_id)->pluck('name')->first(),  
+                            'inventory_sku' => $variable->inventory_sku,
+                            'barcode' => $variable->barcode,      
+                            'original_price' => round($variable->regular_price, 2),
+                            'price' => round($variable->sales_price, 2),
                             'discount' => NULL,
                             'unit' => NULL,
                             'quantity' => 100,
-                            'tag' => strtolower(optional($data->parent)->category_name),
+                            'tag' => optional($data->parent)->category_name,
                             'description' => $data->short_description
                         ];
                     }
