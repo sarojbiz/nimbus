@@ -24,7 +24,7 @@ class ProductResource extends JsonResource
             'parent' => optional($this->parent)->category_name,
             'children' => NULL,
             'image' => $this->feature_image ? action('UploadController@getFile', ['product_thumb', $this->feature_image]) : null,
-            'type' => $this->has_size_color ? 'Variable product' : 'Simple product',
+            'type' => $this->has_size_color ? 'variable' : 'simple',
             'brand' => optional($this->brand)->name,
             'sales_product' => $this->is_sales_product ? 'Yes' : 'No',
             'status' => GeneralStatus::fromValue((int) $this->status)->description,    
