@@ -1,23 +1,25 @@
 <?php
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\APIController as APIController;
 use App\Category;
 use Illuminate\Database\QueryException;
 use Exception;
+use App\Http\Resources\CategoryResource;
 
-class CategoryController extends APIController
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::exclude(['created_by','created_at','updated_by','updated_at'])->get();
-        return $this->sendResponse($categories, 'Categories retrieved successfully.');
+        $categories = Category::where('status', 1)->get();
+        $request->withchildren = 'withchildren';
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -26,23 +28,48 @@ class CategoryController extends APIController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $category = [];     
-		try {            	            
-            $category= Category::exclude(['created_by','created_at','updated_by','updated_at'])->findOrFail($id);            	
-            $message = 'Category detail.';	
-            return $this->sendResponse($category, $message);	
+        try {            	            
+            $category= Category::findOrFail($id);  
+            $request->withchildren = 'withchildren';
+            return new CategoryResource($category);	
+
         } catch (QueryException $e) {      
 
-            $message = $e->errorInfo[2];  
-            return $this->sendError($category, $message);          
+            $message = $e->getMessage();
+            return response()->json(['message' => $message], 406);
 
         } catch (Exception $e) {
 
-            $message = $e->getMessage();
-            return $this->sendError($category, $message);
+            $message = 'Error in fetching category data.';  
+            return response()->json(['message' => $message], 406);
 
         }        
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function categoryProducts(Request $request, $id)
+    {
+        try {            	            
+            $category= Category::findOrFail($id);  
+            $request->withproducts = 'withproducts';
+            return new CategoryResource($category);	
+
+        } catch (QueryException $e) {      
+
+            $message = $e->getMessage();
+            return response()->json(['message' => $message], 406);
+
+        } catch (Exception $e) {
+
+            $message = 'Error in fetching category data.';  
+            return response()->json(['message' => $message], 406);
+
+        }
     }
 }

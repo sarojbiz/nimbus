@@ -100,7 +100,11 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a href="{{route('product', $product->mcode)}}">{{$product->pdt_name}}</a></h3>
+                                                @if(isset($product->mcode) && !empty($product->mcode))
+                                                    <h3><a href="{{route('product', $product->mcode)}}">{{$product->pdt_name}}</a></h3>
+                                                @else
+                                                    <h3>{{$product->pdt_name}}</h3>    
+                                                @endif
                                                 <div class="product-price">
                                                     {!! $product->show_price !!}
                                                 </div>
