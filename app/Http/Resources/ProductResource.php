@@ -26,10 +26,14 @@ class ProductResource extends JsonResource
             'image' => $this->feature_image ? action('UploadController@getFile', ['product_thumb', $this->feature_image]) : null,
             'type' => $this->has_size_color ? 'variable' : 'simple',
             'brand' => optional($this->brand)->name,
-            'sales_product' => $this->is_sales_product ? 'Yes' : 'No',
-            'status' => GeneralStatus::fromValue((int) $this->status)->description,    
+            'feature_product' => $this->is_feature_product ? TRUE : FALSE,
+            'sales_product' => $this->is_sales_product ? TRUE : FALSE,
+            'stock_status' => $this->stock_status,
+            'status' => GeneralStatus::fromValue((int) $this->product_status)->description,    
             'tag' => optional($this->parent)->category_name,
             'description' => strip_tags($this->short_description),
+            'ingredients' => strip_tags($this->ingredients),
+            'how_to_use' => strip_tags($this->how_to_use),
             'variations' => AttributeResource::collection($this->inventoryProducts)
         ];
     }
