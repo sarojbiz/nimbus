@@ -28,17 +28,9 @@ class ProductResource extends JsonResource
             'brand' => optional($this->brand)->name,
             'sales_product' => $this->is_sales_product ? 'Yes' : 'No',
             'status' => GeneralStatus::fromValue((int) $this->status)->description,    
-            //'size' => Size::where('id', $this->inventoryProducts->size_id)->pluck('name')->first(),
-            //'color' => Color::where('id', $this->inventoryProducts->color_id)->pluck('name')->first(),  
-            //'inventory_sku' => $this->inventoryProducts->inventory_sku,
-            //'barcode' => $this->inventoryProducts->barcode,      
-            //'original_price' => round($this->inventoryProducts->regular_price, 2),
-            //'price' => round($this->inventoryProducts->sales_price, 2),
-            'discount' => NULL,
-            'unit' => NULL,
-            'quantity' => 100,
             'tag' => optional($this->parent)->category_name,
-            'description' => strip_tags($this->short_description)
+            'description' => strip_tags($this->short_description),
+            'variations' => AttributeResource::collection($this->inventoryProducts)
         ];
     }
 }
