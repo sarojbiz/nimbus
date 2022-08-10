@@ -1,4 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
 use Illuminate\Http\Request;
 
@@ -15,6 +18,7 @@ use Illuminate\Http\Request;
 Route::post('register', 'API\RegisterController@register');
 Route::post('login', 'API\AuthController@login');
 Route::get('product', 'API\ProductController@index');
+Route::get('product/{id}', 'API\ProductController@show');
 Route::get('category', 'API\CategoryController@index');
 Route::get('category/{id}', 'API\CategoryController@show');
 Route::get('category/{id}/products', 'API\CategoryController@categoryProducts');

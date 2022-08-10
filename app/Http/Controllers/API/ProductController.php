@@ -21,14 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     { 
-        $products = Product::where('product_status', 1)->orderBy('pdt_id', 'ASC')->get();
-        /*
-        foreach($products as $product){
-            
-            dd($product->inventoryProducts);
-        }
-        */
-        
+        $products = Product::where('product_status', 1)->orderBy('pdt_id', 'ASC')->get();        
         return ProductResource::collection($products);
     }
 
@@ -42,18 +35,18 @@ class ProductController extends Controller
     {
         $product = [];     
 		try {            	            
-            $product= Product::exclude(['created_by','created_at','updated_by','updated_at'])->where('mcode',$mcode)->firstOrFail();            	
-            $message = 'Product detail.';	
-            return $this->sendResponse($product, $message);	
+            $product= Product::exclude(['created_by','created_at','updated_by','updated_at'])->where('mcode',$mcode)->firstOrFail();            	            
+            return new ProductResource($product);	
+
         } catch (QueryException $e) {      
 
             $message = $e->errorInfo[2];  
-            return $this->sendError($product, $message);          
+            return response()->json(['message' => $message], 406);          
 
         } catch (Exception $e) {
 
-            $message = $e->getMessage();
-            return $this->sendError($product, $message);
+            $message = 'Error in fetching product data.';  
+            return response()->json(['message' => $message], 406);
 
         }        
     }
