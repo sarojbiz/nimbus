@@ -91,7 +91,8 @@ class CategoryController extends Controller
             DB::commit();
             return redirect()->action('Admin\CategoryController@index')->withErrors(['alert-success'=>"Category added successfully"]);
         } catch (\Exception $e) {
-            
+            $message = $e->getMessage();
+            dd( $message );
             if (!empty($imagePath) && file_exists($imagePath)) {			
                 File::delete($imagePath);
             }            
