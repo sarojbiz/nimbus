@@ -91,8 +91,7 @@ class CategoryController extends Controller
             DB::commit();
             return redirect()->action('Admin\CategoryController@index')->withErrors(['alert-success'=>"Category added successfully"]);
         } catch (\Exception $e) {
-            $message = $e->getMessage();
-            dd( $message );
+            
             if (!empty($imagePath) && file_exists($imagePath)) {			
                 File::delete($imagePath);
             }            
@@ -275,8 +274,8 @@ class CategoryController extends Controller
 	{        
         $resize = ['full' => array(800, null), 'thumb' => array(640, null)];
         $name = 'category_image';
-        $directory = public_path('uploads/categories/');
-		$thumbdirectory = public_path('uploads/categories/thumb/');
+        $directory = public_path('uploads/categories');
+		$thumbdirectory = public_path('uploads/categories/thumb');
         
         $filename = $this->uploadAsset($request, $name, $resize, $data, $directory, $thumbdirectory);
 
