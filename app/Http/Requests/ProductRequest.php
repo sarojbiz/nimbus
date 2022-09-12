@@ -49,7 +49,7 @@ class ProductRequest extends FormRequest
             'feature_image' => $imageRules,
             'product_status' => 'required',
         ];
-
+        /*
         if((int) $this->route('product')->has_size_color == 1) {
             //https://stackoverflow.com/questions/50694208/laravel-how-to-validate-array-index-and-values
             //$minRegularPrice = (int) $this->input('regular_price');
@@ -62,6 +62,7 @@ class ProductRequest extends FormRequest
             $rules['attribute.*.inventory_sku'] = 'required';
             $rules['attribute.*.barcode'] = 'required';
         }
+        */
         
         return $rules;
     }
