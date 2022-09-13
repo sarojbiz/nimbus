@@ -29,11 +29,12 @@ Route::get('color/{id}', 'API\ColorController@show');
 Route::get('barcode', 'API\BarcodeController@index');
 
 Route::middleware('auth:api')->group( function () {
+	
+	Route::get('user', 'API\UserProfileController@show');
+	
 	Route::get('cart', 'API\CartController@index');
 	Route::post('cart/update', 'CartController@update');
 	Route::post('cart/add', 'CartController@add');
 	Route::post('cart/remove', 'CartController@remove');
-});
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	
 });

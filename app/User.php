@@ -17,7 +17,7 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array
-	 * user_type 1 = admin, 2 = api, 3 = customer
+	 * user_type 1 = admin, 2 = member
      */
     protected $fillable = [
         'member_id', 'email', 'password', 'user_type', 'verify_opt', 'mobile', 'first_name', 'last_name', 'status'
