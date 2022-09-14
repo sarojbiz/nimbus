@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Enums\ProvinceType;
 use App\Enums\Countries;
+use App\Enums\PaymentMethod;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -50,4 +51,25 @@ class SettingController extends Controller
 
         return response()->json($response, 200);
     }    
+
+    /**
+     * Display the specified resource of all avaliable payment methods.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPaymentList()
+    {
+        $data = [];
+        $methods = PaymentMethod::toArray();
+        if( is_array( $methods ) && !empty( $methods ) ) {
+            foreach( $methods as $key => $value ) {
+                $data[] = ['key' => $value, 'value' => $key];
+            }
+        }
+        $response = [
+            'data'    => json_decode(json_encode($data))
+        ];
+
+        return response()->json($response, 200);
+    }        
 }
