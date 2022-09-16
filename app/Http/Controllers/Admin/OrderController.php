@@ -9,7 +9,7 @@ use DB;
 use Carbon\Carbon;
 use App\Enums\OrderStatus;
 use App\Enums\GeneralStatus;
-use App\Enums\ProvienceType;
+use App\Enums\ProvinceType;
 use App\Enums\Countries;
 
 class OrderController extends Controller
@@ -56,7 +56,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         try {    
-            $proviences = ProvienceType::toSelectArray();
+            $proviences = ProvinceType::toSelectArray();
             $countries = Countries::toSelectArray();
             $shippingStatues = OrderStatus::toSelectArray();  
             $statuses = GeneralStatus::toSelectArray();        	                                 	

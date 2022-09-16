@@ -8,7 +8,7 @@ use App\Http\Requests\AddressbookRequest;
 use DB;
 use Auth;
 use App\UserAddress;
-use App\Enums\ProvienceType;
+use App\Enums\ProvinceType;
 use App\Enums\Countries;
 
 class AddressbookController extends Controller
@@ -20,7 +20,7 @@ class AddressbookController extends Controller
      */
     public function index()
     {
-        $proviences = ProvienceType::toSelectArray();
+        $proviences = ProvinceType::toSelectArray();
         $countries = Countries::toSelectArray();
         $title = 'Address Book';
         return view('dashboard.addressbook', compact('title', 'proviences', 'countries'));

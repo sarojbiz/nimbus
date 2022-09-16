@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-use App\Enums\ProvienceType;
+use App\Enums\ProvinceType;
 use App\Enums\Countries;
 
 class AddressbookRequest extends FormRequest
@@ -30,7 +30,7 @@ class AddressbookRequest extends FormRequest
             'street_address' => 'required|max:255',
             'city' => 'required|max:255',
             'postal_code' => 'required|max:6',
-            'provience' => 'required|max:6|enum_value:' . ProvienceType::class . ',false',
+            'provience' => 'required|max:6|enum_value:' . ProvinceType::class . ',false',
             'country' => 'required|enum_value:' . Countries::class . ',false',
         ];
     }
