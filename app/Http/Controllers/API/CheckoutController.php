@@ -9,7 +9,7 @@ use App\OrderProduct;
 use Auth;
 use App\Enums\GeneralStatus;
 use App\Enums\OrderStatus;
-use App\Http\Requests\Api\CheckoutRequest;
+use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Controllers\Controller;
 
 class CheckoutController extends Controller
