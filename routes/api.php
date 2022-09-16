@@ -34,10 +34,6 @@ Route::get('payment_methods', 'API\SettingController@getPaymentList');
 Route::middleware('auth:api')->group( function () {
 	
 	Route::get('user', 'API\UserProfileController@show');
-	
-	Route::get('cart', 'API\CartController@index');
-	Route::post('cart/update', 'CartController@update');
-	Route::post('cart/add', 'CartController@add');
-	Route::post('cart/remove', 'CartController@remove');
+	Route::POST('checkout', 'API\CheckoutController@store');	
 	
 });
