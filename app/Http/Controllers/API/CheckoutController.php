@@ -10,31 +10,13 @@ use Auth;
 use App\Enums\GeneralStatus;
 use App\Enums\OrderStatus;
 use App\Http\Requests\API\CheckoutRequest;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrderProductResource;
 use App\Http\Controllers\Controller;
 
 class CheckoutController extends Controller
 {
     private $baseOrder = 572098;
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,6 +26,7 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
+        $order_total = 0;
         $order = new Order();
 
         $order->s_first_name = $request->get('shipping_fname');
@@ -70,7 +53,8 @@ class CheckoutController extends Controller
         $order->user_agent = $request->server('HTTP_USER_AGENT');
         $order->status = GeneralStatus::Enabled;
         $order->order_status_id = OrderStatus::Pending;
-        $order->total = 100.00;
+        $order->total = $order_total;
+        $order->identifier = md5(time());
         $order->user_id = optional(Auth::user())->id;
         $order->save();
         
@@ -84,23 +68,22 @@ class CheckoutController extends Controller
         
         if( is_array($carts) && !empty($carts) ) {
             foreach( $carts as $cart) {  
-                //get product details from cart product id
-                $product = Product::where('products.pdt_id', $cart['pdt_id'])->first();                
-                if( $product ) {
-                    $request->request->add(['pdt_id' => $product->pdt_id]);
-                    $inventoryProduct = $product::getInventory($request);
-                    
+                $product = new Product();
+                $request->request->add(['pdt_id' => $cart['pdt_id'], 'color' => $cart['color'], 'size' => $cart['size']]);
+                $inventoryProduct = $product::getInventory($request);
+                if( $inventoryProduct ){
+                    $order_total += round(($inventoryProduct->actual_price * $cart['quantity']), 2);
                     $orderProduct = new OrderProduct();
                     $orderProduct->order_id = $order->id;
-                    $orderProduct->product_id = $product->pdt_id;
+                    $orderProduct->product_id = $inventoryProduct->product->pdt_id;
                     $orderProduct->inventory_product_id = $inventoryProduct->id;
-                    $orderProduct->product_name = $product->pdt_name;
-                    $orderProduct->color_id = $product->has_size_color ? $cart['color'] : NULL;
-                    $orderProduct->color_name = $product->has_size_color ? $cart['color'] : NULL;
-                    $orderProduct->size_name = $product->has_size_color ? $cart['size'] : NULL;
-                    $orderProduct->size_id = $product->has_size_color ? $cart['size'] : NULL;
+                    $orderProduct->product_name = $inventoryProduct->product->pdt_name;
+                    $orderProduct->color_id = $inventoryProduct->product->has_size_color ? $inventoryProduct->color_id : NULL;
+                    $orderProduct->color_name = $inventoryProduct->product->has_size_color ? $inventoryProduct->color->name : NULL;
+                    $orderProduct->size_name = $inventoryProduct->product->has_size_color ? $inventoryProduct->size->name : NULL;
+                    $orderProduct->size_id = $inventoryProduct->product->has_size_color ? $inventoryProduct->size_id : NULL;
                     $orderProduct->price =  $inventoryProduct->actual_price;                    
-                    $orderProduct->quantity = $cart['quantity'];
+                    $orderProduct->quantity = (int) $cart['quantity'];
                     $orderProduct->subtotal = round(($inventoryProduct->actual_price * $cart['quantity']), 2);
                     $orderProduct->tax = 0.00;
                     $orderProduct->total = round(($inventoryProduct->actual_price * $cart['quantity']), 2);
@@ -108,7 +91,12 @@ class CheckoutController extends Controller
                 }
             }
         }
-        return response()->json(['message' => 'Checkout Successful.'], 200);
+
+        //after calculation, update the order total.
+        $order->total = round($order_total, 2);
+        $order->save();
+
+        return new OrderResource($order);
     }
 
     /**

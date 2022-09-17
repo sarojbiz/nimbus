@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use App\Enums\GeneralStatus;
 use App\InventoryProduct;
 
 class Product extends Model
@@ -51,15 +52,16 @@ class Product extends Model
     }
 
     /**
-     * return price of any product
-     * return regular and sales prices
+     * get product details from product id.
+     * return product detail, attributes and custom acutal price.
      * 
-     * @return string
+     * @return array
      */
     public static function getInventory($request)
     {
-        $product = Product::where('pdt_id', $request->get('pdt_id'))->first();
-        if( !$product ){
+        //get product details from product id
+        $product = Product::where(['pdt_id' => $request->get('pdt_id'), 'product_status' => GeneralStatus::Enabled])->first();
+        if( is_null( $product )){
             return NULL;
         }
         
@@ -74,7 +76,6 @@ class Product extends Model
                     $query->where('color_id', $request->get('color'));
                 }                
             })->first();
-            
         }else{
             $inventoryProduct = InventoryProduct::where('product_id', $request->get('pdt_id'))->first();                       
         }
@@ -83,8 +84,11 @@ class Product extends Model
             $inventoryProduct->actual_price = $inventoryProduct->sales_price ? round($inventoryProduct->sales_price, 2) : round($inventoryProduct->regular_price, 2);
         } 
         
+        //add produc details as well so that we can use product details
+        $inventoryProduct->product = $product;
+        
         return $inventoryProduct;
-    }  
+    }
     
     /**
      * return price of any product

@@ -20,4 +20,22 @@ class InventoryProduct extends Model
         }
         return 0.00;
     }
+
+    /**
+     * Get the size attribute associated with the product.
+     * this will give size attribute only
+     */
+    public function size()
+    {
+        return $this->belongsTo('App\Size');
+    }
+
+    /**
+     * Get the color attribute associated with the product.
+     * this will give color attribute only
+     */
+    public function color()
+    {
+        return $this->belongsTo('App\Color');
+    }    
 }
