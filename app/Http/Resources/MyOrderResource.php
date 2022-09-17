@@ -3,12 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Size;
-use App\Color;
 use App\Enums\OrderStatus;
 use App\Enums\GeneralStatus;
+use Carbon\Carbon;
 
-class OrderResource extends JsonResource
+class MyOrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,12 +18,13 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'    => $this->id,
+            'id' => $this->id,
+            'user_id' => $this->user_id,
             'order_no' => $this->order_no,
-            'total' => round($this->total, 2),
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d g:i A'),
+            'total' => $this->total,
             'status' => GeneralStatus::fromValue((int) $this->status)->description,
             'shippping_status' => OrderStatus::fromValue((int) $this->order_status_id)->description,
-            'products' => OrderProductResource::collection($this->orderProducts)
         ];
     }
 }
