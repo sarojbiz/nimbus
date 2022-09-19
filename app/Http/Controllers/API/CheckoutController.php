@@ -79,8 +79,8 @@ class CheckoutController extends Controller
                     $orderProduct->inventory_product_id = $inventoryProduct->id;
                     $orderProduct->product_name = $inventoryProduct->product->pdt_name;
                     $orderProduct->color_id = $inventoryProduct->product->has_size_color ? $inventoryProduct->color_id : NULL;
-                    $orderProduct->color_name = $inventoryProduct->product->has_size_color ? $inventoryProduct->color->name : NULL;
-                    $orderProduct->size_name = $inventoryProduct->product->has_size_color ? $inventoryProduct->size->name : NULL;
+                    $orderProduct->color_name = $inventoryProduct->product->has_size_color ? optional($inventoryProduct->color)->name : NULL;
+                    $orderProduct->size_name = $inventoryProduct->product->has_size_color ? optional($inventoryProduct->size)->name : NULL;
                     $orderProduct->size_id = $inventoryProduct->product->has_size_color ? $inventoryProduct->size_id : NULL;
                     $orderProduct->price =  $inventoryProduct->actual_price;                    
                     $orderProduct->quantity = (int) $cart['quantity'];
