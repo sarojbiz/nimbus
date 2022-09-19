@@ -27,13 +27,13 @@ class MyOrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show(Order $order)
+    {   
         try {            	            
-            $order = Order::where('status', GeneralStatus::Enabled)->findOrFail($id);    
+               
             return new MyOrderDetailResource($order);	
 
         } catch (QueryException $e) {      
@@ -43,7 +43,7 @@ class MyOrderController extends Controller
 
         } catch (Exception $e) {
 
-            $message = 'Error in fetching size data.';
+            $message = 'No Order found.';
             return response()->json(['message' => $message], 406);
 
         }        

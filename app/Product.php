@@ -59,6 +59,7 @@ class Product extends Model
      */
     public static function getInventory($request)
     {
+        $inventoryProduct = [];
         //get product details from product id
         $product = Product::where(['pdt_id' => $request->get('pdt_id'), 'product_status' => GeneralStatus::Enabled])->first();
         if( is_null( $product )){
@@ -82,10 +83,10 @@ class Product extends Model
        
         if( $inventoryProduct ){
             $inventoryProduct->actual_price = $inventoryProduct->sales_price ? round($inventoryProduct->sales_price, 2) : round($inventoryProduct->regular_price, 2);
-        } 
         
-        //add produc details as well so that we can use product details
-        $inventoryProduct->product = $product;
+            //add produc details as well so that we can use product details
+            $inventoryProduct->product = $product;
+        }      
         
         return $inventoryProduct;
     }

@@ -36,6 +36,6 @@ Route::middleware('auth:api')->group( function () {
 	Route::get('user', 'API\UserProfileController@show');
 	Route::post('checkout', 'API\CheckoutController@store');
 	Route::get('myorders', 'API\MyOrderController@index');	
-	Route::get('myorder/{id}', 'API\MyOrderController@show');	
+	Route::get('myorder/{order}', 'API\MyOrderController@show');	
 	
 });

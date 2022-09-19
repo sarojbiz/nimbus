@@ -43,6 +43,7 @@ class MyOrderDetailResource extends JsonResource
             'shippping_status' => OrderStatus::fromValue((int) $this->order_status_id)->description,
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d g:i A'),
             'user_id' => $this->user_id,
+            'products' => OrderProductResource::collection($this->orderProducts)
         ];
     }
 }
