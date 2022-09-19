@@ -130,7 +130,8 @@
                 <th>{!! Form::label('header_regular_price', 'Regular Price * :') !!}</th>
                 <th>{!! Form::label('header_sales_price', 'Sales Price :') !!}</th>
                 <th>{!! Form::label('header_inventory_sku', 'SKU * :') !!}</th>
-                <th>{!! Form::label('header_barcode', 'Barcode * :') !!} <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-plus-square"></i></a></th>            
+                <th>{!! Form::label('header_barcode', 'Barcode * :') !!}</th>
+                <th>&nbsp;<span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-plus-square"></i></th>            
             </tr>
         </thead>
     <tbody>
@@ -173,6 +174,7 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
             </td> 
+            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> </td>
             </tr> 
         @empty  
             @if(old('attribute') !== NULL && !empty(old('attribute')))          
@@ -214,6 +216,7 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>               
             </td> 
+            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square"></i></span> </td>
             </tr
             @endforeach>
             @else
@@ -255,6 +258,7 @@
                     {{ $errors->first('attribute.0.barcode') }}
                 </div>
             </td> 
+            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square"></i></span> </td>
             </tr> 
             @endif 
         @endforelse 
@@ -305,7 +309,6 @@
                 _appendHTML = '<tr>' + _html.html() + '</tr>';
             $('#product_attributes tbody').append( _appendHTML );
             $('#product_attributes tbody tr:last').find(':input').val('');
-            $('#product_attributes tbody tr:last').find('td:gt(1) :input').prop('required', true);
 
             $('#product_attributes tbody tr:last td:eq(0)').find(':input').attr("name", "attribute[" + _count + "][size]");
             $('#product_attributes tbody tr:last td:eq(1)').find(':input').attr("name", "attribute[" + _count + "][color]");
@@ -324,6 +327,16 @@
                 _toggleRequiredStatus(true);
                 _toggleRequiredInventoryStatus(false);
                 $('#product_attributes').hide();
+            }
+        })
+
+        $(document).on( 'click', '.fa-minus-square', function(){
+            var _this = $(this);            
+            if(confirm('Are you sure to delete this row?')){
+                //check for variation id
+
+                _this.parents('tr').remove();
+
             }
         })
     });

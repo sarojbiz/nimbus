@@ -54,7 +54,7 @@ class CheckoutController extends Controller
         $order->status = GeneralStatus::Enabled;
         $order->order_status_id = OrderStatus::Pending;
         $order->total = $order_total;
-        $order->identifier = md5(time());
+        //$order->identifier = md5(time());
         $order->user_id = optional(Auth::user())->id;
         $order->save();
         
