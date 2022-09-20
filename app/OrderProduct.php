@@ -11,8 +11,8 @@ class OrderProduct extends Model
     /**
      * Get the inventorys of associated with the product.
      */
-    public function order()
+    public function products()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Product', 'product_id', 'pdt_id');
     }
 }

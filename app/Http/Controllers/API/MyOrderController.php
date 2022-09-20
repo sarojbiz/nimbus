@@ -31,7 +31,7 @@ class MyOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {   
+    {  
         try {
             if( $order->user_id != auth('api')->user()->id )
             {

@@ -24,7 +24,7 @@ class OrderProductResource extends JsonResource
             'total'        => round($this->total, 2),
             'color'        => $this->color_name,
             'size'         => $this->size_name,
-            'image'        => $this->feature_image ? action('UploadController@getFile', ['product_thumb', $this->feature_image]) : null,
+            'image'        => $this->products->feature_image ? action('UploadController@getFile', ['product_thumb', $this->products->feature_image]) : null,
         ];
     }
 }
