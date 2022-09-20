@@ -32,13 +32,16 @@ class MyOrderController extends Controller
      */
     public function show(Order $order)
     {   
-        try {            	            
-               
+        try {
+            if( $order->user->id != Auth::user()->id )
+            {
+                throw new \Exception("Invalid Order detail id.");
+            }            	            
             return new MyOrderDetailResource($order);	
 
         } catch (QueryException $e) {      
 
-            $message = $e->errorInfo[2];  
+            $message = "Invalid Order detail requested.";  
             return response()->json(['message' => $message], 406);          
 
         } catch (Exception $e) {
