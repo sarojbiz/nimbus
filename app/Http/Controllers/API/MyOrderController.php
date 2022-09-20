@@ -33,7 +33,7 @@ class MyOrderController extends Controller
     public function show(Order $order)
     {   
         try {
-            if( $order->user->id != auth('api')->user()->id )
+            if( $order->user_id != auth('api')->user()->id )
             {
                 throw new \Exception("Invalid Order detail id.");
             }            	            
