@@ -25,6 +25,7 @@ class MyOrderResource extends JsonResource
             'total' => $this->total,
             'status' => GeneralStatus::fromValue((int) $this->status)->description,
             'shippping_status' => OrderStatus::fromValue((int) $this->order_status_id)->description,
+            'products' => OrderProductResource::collection($this->orderProducts)
         ];
     }
 }
