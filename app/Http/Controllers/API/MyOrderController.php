@@ -20,7 +20,7 @@ class MyOrderController extends Controller
      */
     public function index()
     {        
-        $orders = Order::select('id', 'user_id', 'order_no', 'created_at', 'total', 'order_status_id', 'status')->where('user_id', optional(Auth::user())->id)->where('status', GeneralStatus::Enabled)->orderBy('id', 'DESC')->limit(10)->get();
+        $orders = Order::select('id', 'user_id', 'order_no', 'created_at', 'total', 'order_status_id', 'status')->where('user_id', optional(Auth::user())->id)->where('status', GeneralStatus::Enabled)->orderBy('id', 'DESC')->paginate(5);
         return MyOrderResource::collection($orders);
     }
 

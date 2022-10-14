@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::where('status', 1)->get();
+        $categories = Category::where('status', 1)->paginate(5);
         $request->withchildren = 'withchildren';
         return CategoryResource::collection($categories);
     }
