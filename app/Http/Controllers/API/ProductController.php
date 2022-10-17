@@ -21,8 +21,8 @@ class ProductController extends Controller
      */
     public function index()
     { 
-        //$products = Product::where('product_status', 1)->orderBy('pdt_id', 'ASC')->get();        
-        $products = Product::where('product_status', 1)->orderBy('pdt_id', 'ASC')->paginate(5);        
+        $products = Product::where('product_status', 1)->orderBy('pdt_id', 'DESC')->get();        
+        //$products = Product::where('product_status', 1)->orderBy('pdt_id', 'ASC')->paginate(5);        
         return ProductResource::collection($products);
     }
 
