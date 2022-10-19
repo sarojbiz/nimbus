@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['adminPermission']], functio
     Route::get('products/sample_excel', 'Admin\ProductController@getSampleExcel');
     Route::resource('products', 'Admin\ProductController');
     Route::get('products/delete/{product}', 'Admin\ProductController@destroy');
+    Route::post('products/delete_single_inventory/{product?}', 'Admin\ProductController@deleteSingleInventory');
 
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');

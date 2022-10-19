@@ -477,4 +477,31 @@ class ProductController extends Controller
         return (new ProductSampleTemplateExport())->download('sample_excel'.$today.'.xlsx');
     } 
 
+    /**
+     * Store imported products to system from excel
+     *
+     * @param  NULL
+     * @return Maatwebsite\Excel\Facades\Excel
+     */
+    public function deleteSingleInventory(Product $product, REQUEST $request)
+    {
+        if($request->ajax())
+        {
+            try {
+                
+                DB::beginTransaction();
+                $product->inventoryProducts()->where('id', $request->id)->delete();
+                DB::commit();
+                return response()->json(['response' => TRUE, 'message' => 'Product inventory removed successfully. '], 200);
+
+            } catch ( \Exception $e ) {
+                
+                DB::rollback();
+                return response()->json(['response' => FALSE, 'message' => $e->getMessage()], 200);
+    
+            }
+        }
+        return abort(403); // Access forbidden
+    }
+
 }

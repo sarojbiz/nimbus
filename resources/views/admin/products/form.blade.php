@@ -135,6 +135,7 @@
             </tr>
         </thead>
     <tbody>
+        {{-- old invetory render for product edit --}}  
         @if( isset($product->inventoryProducts) )
         @forelse( $product->inventoryProducts as $key => $attribute )
             <tr>
@@ -174,51 +175,52 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
             </td> 
-            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> </td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> </td>
             </tr> 
+            {{-- old invetory render for product edit ends --}} 
         @empty  
             @if(old('attribute') !== NULL && !empty(old('attribute')))          
-            @foreach( old('attribute') as $key => $attribute )
-            <tr>
-            <td>   
-                {!! Form::select('attribute['. $key .'][size]', $sizes, $attribute['size'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.size') ? ' is-invalid' : ''), 'placeholder' => '--- Select Size ---']) !!}
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.size') }}
-                </div>                 
-            </td>
-            <td>
-                {!! Form::select('attribute['. $key .'][color]', $colors, $attribute['color'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.color') ? ' is-invalid' : ''), 'placeholder' => '--- Select Color ---']) !!}
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.color') }}
-                </div>                 
-            </td>
-            <td>
-                {!! Form::number('attribute['. $key .'][regular_price]', $attribute['regular_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'placeholder' => 'Regular Price', 'step' => 'any']) !!}  
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.regular_price') }}
-                </div>              
-            </td>
-            <td>
-                {!! Form::number('attribute['. $key .'][sales_price]', $attribute['sales_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.sales_price') ? ' is-invalid' : ''), 'placeholder' => 'Sales Price', 'step' => 'any']) !!} 
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.sales_price') }}
-                </div>               
-            </td>
-            <td>  
-                {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute['inventory_sku'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'placeholder' => 'SKU']) !!}  
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.inventory_sku') }}
-                </div>         
-            </td>
-            <td>
-                {!! Form::text('attribute[' . $key . '][barcode]', $attribute['barcode'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'placeholder' => 'Barcode']) !!}   
-                <div class="invalid-feedback">
-                    {{ $errors->first('attribute.'. $key .'.barcode') }}
-                </div>               
-            </td> 
-            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square"></i></span> </td>
-            </tr
-            @endforeach>
+                @foreach( old('attribute') as $key => $attribute )
+                    <tr>
+                    <td>   
+                        {!! Form::select('attribute['. $key .'][size]', $sizes, $attribute['size'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.size') ? ' is-invalid' : ''), 'placeholder' => '--- Select Size ---']) !!}
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.size') }}
+                        </div>                 
+                    </td>
+                    <td>
+                        {!! Form::select('attribute['. $key .'][color]', $colors, $attribute['color'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.color') ? ' is-invalid' : ''), 'placeholder' => '--- Select Color ---']) !!}
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.color') }}
+                        </div>                 
+                    </td>
+                    <td>
+                        {!! Form::number('attribute['. $key .'][regular_price]', $attribute['regular_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'placeholder' => 'Regular Price', 'step' => 'any']) !!}  
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.regular_price') }}
+                        </div>              
+                    </td>
+                    <td>
+                        {!! Form::number('attribute['. $key .'][sales_price]', $attribute['sales_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.sales_price') ? ' is-invalid' : ''), 'placeholder' => 'Sales Price', 'step' => 'any']) !!} 
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.sales_price') }}
+                        </div>               
+                    </td>
+                    <td>  
+                        {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute['inventory_sku'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'placeholder' => 'SKU']) !!}  
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.inventory_sku') }}
+                        </div>         
+                    </td>
+                    <td>
+                        {!! Form::text('attribute[' . $key . '][barcode]', $attribute['barcode'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'placeholder' => 'Barcode']) !!}   
+                        <div class="invalid-feedback">
+                            {{ $errors->first('attribute.'. $key .'.barcode') }}
+                        </div>               
+                    </td> 
+                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> </td>
+                    </tr>
+                @endforeach
             @else
             <tr>
             <td>   
@@ -258,7 +260,7 @@
                     {{ $errors->first('attribute.0.barcode') }}
                 </div>
             </td> 
-            <td> <span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-minus-square"></i></span> </td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> </td>
             </tr> 
             @endif 
         @endforelse 
@@ -274,6 +276,27 @@
 @section('scripts')
 <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> 
 <script>
+    function deleteSingleItinary( _this, _iid ){
+        if( _iid <= 0 ){
+            return false;
+        }
+        var _btn = _this,
+            _data = {'id' : _iid, '_token': "{{ csrf_token() }}"},
+            _url = "{{action('Admin\ProductController@deleteSingleInventory', ['product' => $product])}}",
+            _beforeCb = function(){
+                //_btn.hide();                
+                //_btn.next('.loading').show();
+            },
+            _successCb = function(result){
+                //_btn.next('.loading').hide();
+                //_btn.show();        
+                if(result.response){
+                    _this.parents('tr').remove();
+                }
+                alert(result.message);
+            };
+        ajax_process_callbacks(_data, _url, _beforeCb, _successCb);	
+    }
     function _toggleRequiredStatus(required = true){
         var _fields = ['inventory_sku', 'barcode', 'regular_price'];
         _fields.forEach(function( value ) {
@@ -316,6 +339,7 @@
             $('#product_attributes tbody tr:last td:eq(3)').find(':input').attr("name", "attribute[" + _count + "][sales_price]");
             $('#product_attributes tbody tr:last td:eq(4)').find(':input').attr("name", "attribute[" + _count + "][inventory_sku]");
             $('#product_attributes tbody tr:last td:eq(5)').find(':input').attr("name", "attribute[" + _count + "][barcode]");
+            $('#product_attributes tbody tr:last td:last').find('.clone_minus .fa-minus-square').attr("data-id", 0);
         })
 
         $('#has_size_color').on('change', function(){
@@ -331,12 +355,21 @@
         })
 
         $(document).on( 'click', '.fa-minus-square', function(){
-            var _this = $(this);            
+            var _this = $(this),
+                _delete = true,
+                _iid = _this.data('id');            
             if(confirm('Are you sure to delete this row?')){
                 //check for variation id
-
-                _this.parents('tr').remove();
-
+                var _itinarys = $('#product_attributes').find('tbody tr').length;
+                if(_itinarys <= 1){
+                    alert('Atleast one itinary is required for variable product.');
+                    return false;
+                }
+                if( _iid ){
+                    deleteSingleItinary( _this, _iid );                    
+                }else{
+                    _this.parents('tr').remove();
+                }
             }
         })
     });
