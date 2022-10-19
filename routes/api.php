@@ -30,6 +30,7 @@ Route::get('barcode', 'API\BarcodeController@index');
 Route::get('provinces', 'API\SettingController@getProvinceList');
 Route::get('countries', 'API\SettingController@getCountryList');
 Route::get('payment_methods', 'API\SettingController@getPaymentList');
+Route::get('search/product', 'API\SearchController@productSearch');
 
 Route::middleware('auth:api')->group( function () {
 	
