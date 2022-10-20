@@ -42,6 +42,12 @@ class UploadController extends Controller
 			break;
 			case 'banner_large':
 			$directoryPath = 'uploads/banners/';
+			break;
+			case 'page_thumb':
+			$directoryPath = 'uploads/page_thumb/';
+			break;
+			case 'page_large':
+			$directoryPath = 'uploads/page_large/';
 			break;	
 		}
         $fullPath = public_path($directoryPath . $filePath);
