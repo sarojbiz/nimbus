@@ -82,10 +82,16 @@ class PageController extends Controller
                 $page->save();                
             }
 
+            if ($request->hasFile('banner')) {                
+                $imagePath = $this->uploadPageBannerAsset($page, $request);
+                $page->banner = $imagePath;
+                $page->save();                
+            }
+
             DB::commit();
             return redirect()->action('Admin\PageController@index')->withErrors(['alert-success'=>"page added successfully"]);
         } catch (\Exception $e) {
-            
+            dd( $e->getMessage() );
             if (!empty($imagePath) && file_exists($imagePath)) {			
                 File::delete($imagePath);
             }            
@@ -157,6 +163,12 @@ class PageController extends Controller
                 $page->save();                
             }
 
+            if ($request->hasFile('banner')) {                
+                $imagePath = $this->uploadPageBannerAsset($page, $request);                
+                $page->banner = $imagePath;
+                $page->save();                
+            }
+
             DB::commit();
             return redirect()->action('Admin\PageController@index')->withErrors(['alert-success'=>"Page updated successfully"]);
         } catch (\Exception $e) {
@@ -177,9 +189,11 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        if( $page->image ) {
+        if( $page->image )
             $this->removeAsset( $page->image );
-        }        
+        if( $page->banner )
+            $this->removeAsset( $page->banner );
+        
         
         $page->delete();
         return redirect()->action('Admin\PageController@index')->withErrors(['alert-success'=>"Page deleted successfully."]);
@@ -195,14 +209,19 @@ class PageController extends Controller
 	{
         $directory = public_path('uploads/pages/');
         $thumbdirectory = public_path('uploads/pages/thumb/');
+        $bannerdirectory = public_path('uploads/pages/banners/');
         $imagePath = $directory . $image;
         $thumbPath = $thumbdirectory . $image;
+        $bannerPath = $bannerdirectory . $image;
         
 		if (!empty($image) && file_exists($imagePath)) {			
 			File::delete($imagePath);
 		}				
 		if (!empty($image) && file_exists($thumbPath)) {			
 			File::delete($thumbPath);
+        }
+        if (!empty($image) && file_exists($bannerPath)) {			
+			File::delete($bannerPath);
 		}				
 		return true;
 	}
@@ -223,13 +242,13 @@ class PageController extends Controller
 			if(!empty($data->$name) && file_exists($thumbdirectory.$data->$name)){
 				$path2 = $thumbdirectory . $data->$name;
 				File::delete($path2);
-			}			
+            }
 		}
 
 		if (!file_exists($directory)) {
 			mkdir($directory, 0777, true);
 		}
-		if (!file_exists($thumbdirectory)) {
+		if ($thumbdirectory && !file_exists($thumbdirectory)) {
 			mkdir($thumbdirectory, 0777, true);
 		}
 		
@@ -241,11 +260,13 @@ class PageController extends Controller
 		});
 		$upload->save($fileNameDir, 100);
 
-		$fileThumbNameDir = $thumbdirectory . '/' . $fileName;
-		$upload->resize($resize['thumb'][0], $resize['thumb'][1], function ($constraint) {
-			$constraint->aspectRatio();
-		});
-		$upload->save($fileThumbNameDir, 100);
+        if( $thumbdirectory ){
+            $fileThumbNameDir = $thumbdirectory . '/' . $fileName;
+            $upload->resize($resize['thumb'][0], $resize['thumb'][1], function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $upload->save($fileThumbNameDir, 100);
+        }
 
 		return $fileName;		
     }
@@ -262,6 +283,24 @@ class PageController extends Controller
         $name = 'image';
         $directory = public_path('uploads/pages/');
 		$thumbdirectory = public_path('uploads/pages/thumb/');
+        
+        $filename = $this->uploadAsset($request, $name, $resize, $data, $directory, $thumbdirectory);
+
+		return $filename;		
+    }
+    
+    /**
+     * upload category assets
+     *
+     * @param  string  $filePath
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadPageBannerAsset($data, REQUEST $request)
+	{        
+        $resize = ['full' => array(1920, null)];
+        $name = 'banner';
+        $directory = public_path('uploads/pages/banners/');
+		$thumbdirectory = NULL;
         
         $filename = $this->uploadAsset($request, $name, $resize, $data, $directory, $thumbdirectory);
 

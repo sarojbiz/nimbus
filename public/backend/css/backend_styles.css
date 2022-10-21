@@ -35,6 +35,40 @@
     margin: auto;
     text-align: center;
   }
+  .uploadify-image-preview {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ccc;
+    color: #ecf0f1;
+    border-radius: 3px;
+  }
+  .uploadify-image-preview input {
+    line-height: 100px;
+    font-size: 100px;
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+  }
+  .uploadify-image-preview label {
+    position: absolute;
+    z-index: 5;
+    opacity: 0.8;
+    cursor: pointer;
+    background-color: #bdc3c7;
+    width: 150px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 50px;
+    text-transform: uppercase;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+  }
   .card-header{
     margin-bottom: 0;
     background-color: rgba(0,0,0,.03);

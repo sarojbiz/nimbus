@@ -32,6 +32,12 @@
                     <label for="image">Feature Image :</label>
                     <img class="form-control" src="{{ $page->image ? action('Admin\UploadController@getFile', ['file_path' => $page->image, 'assetType' => 'page_thumb']) : "" }}" title="{{$page->image}}" style="width:200px; height:auto;" />
                 </div>
+            @endif 
+            @if( $page->banner )        
+                <div class="form-group">
+                    <label for="image">Banner Image :</label>
+                    <img class="form-control" src="{{ $page->banner ? action('Admin\UploadController@getFile', ['file_path' => $page->banner, 'assetType' => 'page_banner']) : "" }}" title="{{$page->banner}}" style="width:200px; height:auto;" />
+                </div>
             @endif       
             <div class="form-group">
                 {!! Form::label(null, 'Status :') !!}

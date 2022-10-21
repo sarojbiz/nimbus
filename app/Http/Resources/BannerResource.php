@@ -24,9 +24,7 @@ class BannerResource extends JsonResource
             'slug' => $this->slug,
             'anchor_label' => $this->anchor_label,
             'anchor_link' => $this->anchor,
-            'slug' => $this->slug,
-            'image' => $this->image ? action('UploadController@getFile', ['banner_large', $this->image]) : null,
-            'status' => GeneralStatus::fromValue((int) $this->status)->description
+            'image' => $this->image ? action('UploadController@getFile', ['banner_large', $this->image]) : null
         ];
     }
 }
