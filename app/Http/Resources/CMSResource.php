@@ -25,6 +25,7 @@ class CMSResource extends JsonResource
                 'content' => $this->content,
             ]),
             'image' => $this->image ? action('UploadController@getFile', ['page_large', $this->image]) : null,
+            'banner' => $this->banner ? action('UploadController@getFile', ['page_banner', $this->banner]) : null,
             'status' => GeneralStatus::fromValue((int) $this->status)->description
         ];
     }

@@ -30,15 +30,12 @@ class PageRequest extends FormRequest
         } else {
             $nameRules = 'required|max:255|unique:pages,name';
         }
-        if ($this->method() == 'PATCH' || $this->method() == 'PUT') {
-            $imageRules = 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120';
-        } else {
-            $imageRules = 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120';
-        }
-
+        $imageRules = 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120';
+        
         return [
             'name' => $nameRules,
             'image' => $imageRules,
+            'banner' => $imageRules, 
             'description' => 'required',
             'status' => 'required',
         ];
