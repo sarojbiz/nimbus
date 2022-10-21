@@ -6,16 +6,19 @@
     </div>    
 </div>
 <div class="form-group">
-    {!! Form::label(null, 'Banner * :') !!}    
-    <div id="image-preview" class="image-preview">
-        {!! Form::label('image-upload', 'Banner', ['class' => 'image-label', 'id' =>
-        'image-label'])!!}
-        {!! Form::file('image', ['class' => 'form-control-file image-upload', 'id' => 'image-upload', 'accept' => 'image/*']); !!}
-    </div>
-    <p><small>Recommended Size: 1360 X 410</small></p>
-    <div class="invalid-feedback{{($errors->has('image') ? ' d-block' : '')}}">
-        {{ $errors->first('image') }}
-    </div>
+    {!! Form::label('description', 'Banner Description :') !!}       
+    {!! Form::textarea('description', null, ['class' => 'form-control'.($errors->has('tdescriptionitle') ? ' is-invalid' : ''), 'placeholder' => 'Description']) !!}
+    <div class="invalid-feedback">
+        {{ $errors->first('description') }}
+    </div>    
+</div>
+<div class="form-group">
+    {!! Form::label('anchor_label', 'Banner Label :') !!}       
+    {!! Form::text('anchor_label', null, ['class' => 'form-control'.($errors->has('anchor_label') ? ' is-invalid' : ''), 'placeholder' => 'Banner Label']) !!}
+    <div class="invalid-feedback">
+        {{ $errors->first('anchor_label') }}
+    </div>    
+    <p><small>Text label to show on link.</small></p>
 </div>
 <div class="form-group">
     {!! Form::label('anchor', 'Banner Link :') !!}       
@@ -24,6 +27,18 @@
         {{ $errors->first('anchor') }}
     </div>    
     <p><small>Link including : https or https://</small></p>
+</div>
+<div class="form-group">
+    {!! Form::label(null, 'Banner * :') !!}    
+    <div id="image-preview" class="image-preview">
+        {!! Form::label('image-upload', 'Banner', ['class' => 'image-label', 'id' =>
+        'image-label'])!!}
+        {!! Form::file('image', ['class' => 'form-control-file image-upload', 'id' => 'image-upload', 'accept' => 'image/*']); !!}
+    </div>
+    <p><small>Recommended Size: 950 X 400</small></p>
+    <div class="invalid-feedback{{($errors->has('image') ? ' d-block' : '')}}">
+        {{ $errors->first('image') }}
+    </div>
 </div>
 <div class="form-group">
     {!! Form::label('status', 'Status * :') !!}       

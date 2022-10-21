@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
+use App\Enums\GeneralStatus;
 use Exception;
 use Auth;
 use App\Banner;
@@ -49,10 +50,11 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Banner $banner)
     {
         $title = 'Add New Banner';
-        return view('admin.banners.create', compact('title'));
+        $banner->status = GeneralStatus::Enabled;
+        return view('admin.banners.create', compact('title', 'banner'));
     }
 
     /**
@@ -70,7 +72,9 @@ class BannerController extends Controller
         try {
             $banner = new Banner();
             $banner->title = $request->title;
+            $banner->description = $request->description;
             $banner->slug = $this->slugit($request->title);
+            $banner->anchor_label = isset($request->anchor_label)?$request->anchor_label:NULL;
             $banner->anchor = isset($request->anchor)?$request->anchor:NULL;
             $banner->image = ''; //since its not null
             $banner->status = $request->status;
@@ -87,8 +91,6 @@ class BannerController extends Controller
             return redirect()->action('Admin\BannerController@index')->withErrors(['alert-success'=>"Banner added successfully"]);
         } catch (\Exception $e) {
 
-            dd($e->getMessage());
-            
             if (!empty($imagePath) && file_exists($imagePath)) {			
                 File::delete($imagePath);
             }            
@@ -148,7 +150,9 @@ class BannerController extends Controller
 
         try {           
             $banner->title = $request->title;
+            $banner->description = $request->description;
             $banner->slug = $this->slugit($request->title);
+            $banner->anchor_label = $request->anchor_label;
             $banner->anchor = $request->anchor;
             $banner->status = $request->status;
             $banner->updated_by = Auth::guard('admin')->user()->id;
@@ -218,7 +222,7 @@ class BannerController extends Controller
      */
     public function uploadBannerAsset($data, REQUEST $request)
 	{        
-        $resize = ['full' => array(1360, null), 'thumb' => array(640, null)];
+        $resize = ['full' => array(950, null), 'thumb' => array(640, null)];
         $name = 'image';
         $directory = public_path('uploads/banners/');
 		$thumbdirectory = public_path('uploads/banners/thumb/');

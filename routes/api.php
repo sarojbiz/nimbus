@@ -28,6 +28,8 @@ Route::get('color', 'API\ColorController@index');
 Route::get('color/{id}', 'API\ColorController@show');
 Route::get('pages', 'API\CMSController@index');
 Route::get('page/{id}', 'API\CMSController@show');
+Route::get('banners', 'API\BannerController@index');
+Route::get('banner/{id}', 'API\BannerController@show');
 Route::get('barcode', 'API\BarcodeController@index');
 Route::get('provinces', 'API\SettingController@getProvinceList');
 Route::get('countries', 'API\SettingController@getCountryList');
