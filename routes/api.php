@@ -35,6 +35,16 @@ Route::get('provinces', 'API\SettingController@getProvinceList');
 Route::get('countries', 'API\SettingController@getCountryList');
 Route::get('payment_methods', 'API\SettingController@getPaymentList');
 Route::get('search/product', 'API\SearchController@productSearch');
+Route::post('contact/save', function(Request $request){
+	$request->validate([
+		'contact_full_name' => 'required',
+		'contact_email' => 'required',
+		'contact_subject' => 'required',
+		'contact_message' => 'required',
+	]);
+	return response()->json(['message' => 'Message sent successfully.'], 200);  
+
+});
 
 Route::middleware('auth:api')->group( function () {
 	
