@@ -28,7 +28,7 @@ class ProductResource extends JsonResource
             'type' => $this->has_size_color ? 'variable' : 'simple',
             'brand' => optional($this->brand)->name,
             'feature_product' => $this->is_feature_product,
-            'sales_product' => $this->is_sales_product,
+            'sales_product' => $this->is_sale_product,
             'stock_status' => $this->stock_status,
             'status' => GeneralStatus::fromValue((int) $this->product_status)->description,    
             'tag' => optional($this->parent)->category_name,
