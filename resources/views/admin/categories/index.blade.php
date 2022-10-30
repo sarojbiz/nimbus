@@ -42,7 +42,7 @@
                                 @if($category->parent_category_id == 0)
                                     <td>&nbsp;</td>
                                 @else
-                                    <td>{{$category->parent->category_name}}</td>
+                                    <td>{{optional($category->parent)->category_name}}</td>
                                 @endif
                                 <td>{{$category->category_level}}</td>
                                 <td>{{$category->menu_item ? 'Yes' : 'No'}}</td>
