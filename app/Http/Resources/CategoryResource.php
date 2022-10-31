@@ -17,6 +17,7 @@ class CategoryResource extends JsonResource
         return [
             'category_id' => $this->category_id,
             'category_name' => $this->category_name,
+            'category_slug' => $this->category_slug,
             'parent_category_id' => $this->parent_category_id,
             'category_image' => $this->category_image ? action('UploadController@getFile', ['category_thumb', $this->category_image]) : null,
             'category_description' => strip_tags($this->category_description),
