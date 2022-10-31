@@ -50,13 +50,25 @@ class CategoryController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @param slug or id
      *
      * @return \Illuminate\Http\Response
      */
-    public function categoryProducts(Request $request, $id)
+    public function categoryProducts(Request $request, $param)
     {
-        try {            	            
-            $category= Category::findOrFail($id);  
+        try {       
+            //$category= Category::findOrFail($id);  
+            $category = Category::where(function($q) use($param){
+                if( intval( $param ) != 0 ){
+                    $q->where('category_id', $param);
+                }else{
+                    $q->where('category_slug', $param);
+                }
+            })->orderBy('category_name', 'ASC')->first();
+
+            if(is_null( $category ) ) {
+                throw new Exception( 'Error in fetching category data.' );
+            }
             $request->withproducts = 'withproducts';
             return new CategoryResource($category);	
 
@@ -66,7 +78,7 @@ class CategoryController extends Controller
             return response()->json(['message' => $message], 406);
 
         } catch (Exception $e) {
-
+            
             $message = 'Error in fetching category data.';  
             return response()->json(['message' => $message], 406);
 
