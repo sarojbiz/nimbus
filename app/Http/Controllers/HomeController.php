@@ -26,6 +26,16 @@ class HomeController extends FrontController
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {   
+        return view('landing');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function shop()
     {
         $title = 'Home';
         $brands = Brand::where('status', 1)->get();
