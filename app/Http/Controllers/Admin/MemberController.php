@@ -24,7 +24,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::where('user_type', UserType::Member)->orderBy('created_at', 'DESC')->get();
+        $members = Member::where('user_type', UserType::Member)->orderBy('id', 'DESC')->get();
         $title = 'Members Listing';
         return view('admin.members.index', compact('members', 'title'));
     }

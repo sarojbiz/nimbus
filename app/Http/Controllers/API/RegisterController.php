@@ -14,6 +14,8 @@ use App\Enums\GeneralStatus;
 
 class RegisterController extends APIController
 {
+    private $baseno = 572098;
+
     /**
      * Register api
      *
@@ -38,6 +40,10 @@ class RegisterController extends APIController
         $input['status'] = GeneralStatus::Enabled;
         $input['user_type'] = UserType::Member;
         $user = User::create($input);
+
+        $user->member_id = 'M'.($user->id + $this->baseno);
+        $user->save();
+
         $data['token'] =  $user->createToken('authToken')->accessToken;
         $data['name'] =  $user->name;
 
