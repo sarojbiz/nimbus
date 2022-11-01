@@ -40,7 +40,11 @@
                             <td>{{$member->fullname}}</td> 
                             <td>{{$member->email}}</td>
                             <td>{{$member->mobile}}</td> 
+                            @if( $member->status )
                             <td>{{GeneralStatus::fromValue($member->status)->description}}</td>
+                            @else
+                            <td>{{GeneralStatus::fromValue(App\Enums\GeneralStatus::Disabled)->description}}</td>
+                            @endif
                             <td>{{Carbon\Carbon::parse($member->created_at)->format('Y-m-d g:i A')}}</td>
                             <th>
                                 <a href="{{ action('Admin\MemberController@edit', $member->id) }}" title="Edit member">

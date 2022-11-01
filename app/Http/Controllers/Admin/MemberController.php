@@ -8,6 +8,7 @@ use App\Http\Requests\MemberRequest;
 use Exception;
 use App\Member;
 use App\Enums\UserType;
+use App\Enums\GeneralStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -57,7 +58,7 @@ class MemberController extends Controller
             $member->email = $request->email;
             $member->password = bcrypt($request->password);
             $member->mobile = $request->mobile;
-            $member->status = $request->status;
+            $member->status = $request->status ? $request->status : GeneralStatus::Enabled;
             $member->user_type = UserType::Member;
             //$member->created_by = Auth::guard('admin')->user()->id;
             $member->save();

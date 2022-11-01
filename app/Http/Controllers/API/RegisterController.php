@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use Exception;
 use Illuminate\Validation\Rule;
+use App\Enums\UserType;
+use App\Enums\GeneralStatus;
 
 class RegisterController extends APIController
 {
@@ -33,7 +35,8 @@ class RegisterController extends APIController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-		$input['user_type'] = 2;
+        $input['status'] = GeneralStatus::Enabled;
+        $input['user_type'] = UserType::Member;
         $user = User::create($input);
         $data['token'] =  $user->createToken('authToken')->accessToken;
         $data['name'] =  $user->name;

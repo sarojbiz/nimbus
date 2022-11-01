@@ -20,11 +20,11 @@ class UserProfileResource extends JsonResource
             'last_name' => $this->last_name,
             'email' => $this->email,
             'mobile' => $this->mobile,
-            'street_address' => $this->userAddress->street_address,
-            'city' => $this->userAddress->city,
-            'provience' => $this->userAddress->provience,
-            'postal_code' => $this->userAddress->postal_code,
-            'country' => $this->userAddress->country
+            'street_address' => optional($this->userAddress)->street_address,
+            'city' => optional($this->userAddress)->city,
+            'provience' => optional($this->userAddress)->provience,
+            'postal_code' => optional($this->userAddress)->postal_code,
+            'country' => optional($this->userAddress)->country
         ];
     }
 }
