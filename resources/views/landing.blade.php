@@ -7,7 +7,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     
-    <title>Siraha Supermarket</title>
+    <title>Nimbusbazar-Buy Grocery items online in Nepal</title>
     
     <link href="{{asset('landing/css/bootstrap.css')}}" rel="stylesheet" />
 	<link href="{{asset('landing/css/coming-sssoon.css')}}" rel="stylesheet" />    
@@ -43,7 +43,7 @@
 
     <div class="container">
         <h1 class="logo cursive">
-          Siraha Supermarket
+        Nimbusbazar
         </h1>
         
         <div class="content">
@@ -69,7 +69,7 @@
     </div>
     <div class="footer">
       <div class="container">
-            Powered By <a href="http://ssm.com.np/" target="_blank"> Siraha Supermarket </a>
+            Powered By <a href="https://nimbusbazar.com/" target="_blank"> Nimbusbazar </a>
       </div>
     </div>
  </div>
