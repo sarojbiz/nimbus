@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="{{asset('backend/img/logo/logo.png')}}" rel="icon">
-  <title>Admin Login - BBSM</title>
+  <title>Admin Login - Nimbusbazar</title>
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
@@ -28,7 +28,7 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Misumi Cosmetics Login</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Nimbusbazar Login</h1>
                   </div>
                   <form method="POST" action="{{ route('admin.login') }}" class="user">
                     {{csrf_field()}} 
