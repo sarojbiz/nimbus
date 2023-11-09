@@ -1,6 +1,6 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
-    <div class="sidebar-brand-text mx-3">Misumi Admin</div>
+    <div class="sidebar-brand-text mx-3">Nimbusbazar Admin</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
