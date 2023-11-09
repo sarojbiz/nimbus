@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('backend/img/logo/logo.png')}}" rel="icon">
-  <title>@yield('title', 'Dashboard') - Misumi Admin Section</title>
+  <title>@yield('title', 'Dashboard') - Nimbusbazar Admin Section</title>
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet">
