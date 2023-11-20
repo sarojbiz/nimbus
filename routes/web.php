@@ -12,4 +12,6 @@
 */
 include('backend.php');
 
+Route::get('uploads/{assetType}/{file_path}', 'UploadController@getFile')->where('file_path', '(.*)'); // allow slash(/) to be part of file_path
+
 Route::get('/', 'HomeController@index')->name('front');
