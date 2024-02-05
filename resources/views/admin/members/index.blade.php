@@ -24,10 +24,12 @@
                 <table class="table align-items-center table-flush table-hover" id="dataTable">
                     <thead class="thead-light">
                         <tr>
-                        <th>Member ID</th>      
+                        <th>ID</th>      
+                        <th>Referral Code</th>
                         <th>Full Name</th>  
                         <th>Email</th>     
-                        <th>Mobile</th>      
+                        <th>Mobile</th>
+                        <th>Referral By</th>      
                         <th>Status</th>   
                         <th>Registered Date</th>
                         <th>Action</th>
@@ -37,9 +39,11 @@
                         @forelse($members as $member)
                         <tr>
                             <td>{{$member->member_id}}</td> 
+                            <td>{{$member->referral_code}}</td> 
                             <td>{{$member->fullname}}</td> 
                             <td>{{$member->email}}</td>
                             <td>{{$member->mobile}}</td> 
+                            <td>{{$member->referral_by}}</td> 
                             @if( $member->status )
                             <td>{{GeneralStatus::fromValue($member->status)->description}}</td>
                             @else

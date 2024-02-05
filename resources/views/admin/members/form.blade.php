@@ -47,6 +47,22 @@
         </div>    
     </div>    
 </div>
+<div class="form-group row">
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('referral_code', 'Referral Code :') !!}       
+        {!! Form::text('referral_code', null, ['class' => 'form-control'.($errors->has('referral_code') ? ' is-invalid' : ''), 'placeholder' => 'Referral Code', 'readonly' => 'readonly', 'disabled' => 'disabled']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('referral_code') }}
+        </div>    
+    </div>  
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('referral_by', 'Referral By :') !!}       
+        {!! Form::text('referral_by', null, ['class' => 'form-control'.($errors->has('referral_by') ? ' is-invalid' : ''), 'placeholder' => 'Referral By']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('referral_by') }}
+        </div>    
+    </div>    
+</div>
 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 <a href="{{ action('Admin\MemberController@index') }}" class="btn btn-primary">Cancel</a>
 @section('scripts')

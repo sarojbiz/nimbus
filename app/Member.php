@@ -25,4 +25,24 @@ class Member extends Model
     {
         return $this->hasMany('App\Order');
     }
+
+    /**
+     * generate random number for referral code
+     */
+    public function generateReferralCode() {
+        $number = mt_rand(100000, 999999);
+    
+        if ($this->referalCodeExists($number)) {
+            return generateReferralCode();
+        }
+    
+        return 'A-'.$number;
+    }
+    
+    /**
+     * check for random number for referral code
+     */
+    public function referalCodeExists($number) {
+        return User::where('referral_code', $number)->exists();
+    }
 }

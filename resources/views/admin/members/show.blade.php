@@ -20,6 +20,14 @@
         <div class="card-body">
             <form>
             <div class="form-group">
+                {!! Form::label(null, 'Referral Code :') !!}
+                {!! Form::label(null, $member->referral_code, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label(null, 'Referral By :') !!}
+                {!! Form::label(null, $member->referral_by, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
                 {!! Form::label(null, 'First Name :') !!}
                 {!! Form::label(null, $member->first_name, ['class' => 'form-control']) !!}
             </div>

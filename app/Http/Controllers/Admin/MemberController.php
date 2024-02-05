@@ -61,6 +61,8 @@ class MemberController extends Controller
             $member->status = $request->status ? $request->status : GeneralStatus::Enabled;
             $member->user_type = UserType::Member;
             //$member->created_by = Auth::guard('admin')->user()->id;
+            $member->referral_code = $member->generateReferralCode();
+            $member->referral_by = $request->referral_by;
             $member->save();
 
             $member->member_id = 'M'.($member->id + $this->member_id);
@@ -69,7 +71,7 @@ class MemberController extends Controller
             DB::commit();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-success'=>"Member created successfully."]);
         } catch (\Exception $e) {
-                      
+
             DB::rollback();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-danger'=>"Failed to create member."]);
         } 
@@ -135,6 +137,7 @@ class MemberController extends Controller
             }
             $member->mobile = $request->mobile;
             $member->status = $request->status;
+            $member->referral_by = $request->referral_by;
             //$member->created_by = Auth::guard('admin')->user()->id;
             $member->save();
 

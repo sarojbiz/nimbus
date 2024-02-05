@@ -34,6 +34,7 @@ class MemberRequest extends FormRequest
         return [
             'email' => $nameRules,   
             'password' => 'sometimes|nullable|min:8',
+            'referral_by' => 'sometimes|nullable|exists:users,referral_code',
             'first_name' => 'required',
             'last_name' => 'required',
             'status' => 'required',
