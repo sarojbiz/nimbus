@@ -16,6 +16,8 @@ class UserProfileResource extends JsonResource
     {
         return [
             'member_id' => $this->member_id,
+            'referral_code' => $this->referral_code,
+            'referral_by' => $this->referral_by,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,

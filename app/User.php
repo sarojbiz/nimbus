@@ -20,7 +20,7 @@ class User extends Authenticatable
 	 * user_type 1 = admin, 2 = member
      */
     protected $fillable = [
-        'member_id', 'email', 'password', 'user_type', 'verify_opt', 'mobile', 'first_name', 'last_name', 'status'
+        'member_id', 'email', 'password', 'user_type', 'verify_opt', 'mobile', 'first_name', 'last_name', 'status', 'referral_code', 'referral_by'
     ];
 
     /**
