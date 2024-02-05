@@ -50,7 +50,7 @@
 <div class="form-group row">
     <div class="col-sm-12 col-md-6">
         {!! Form::label('referral_code', 'Referral Code :') !!}       
-        {!! Form::text('referral_code', null, ['class' => 'form-control'.($errors->has('referral_code') ? ' is-invalid' : ''), 'placeholder' => 'Referral Code', 'readonly' => 'readonly', 'disabled' => 'disabled']) !!}
+        {!! Form::text('referral_code', null, ['class' => 'form-control'.($errors->has('referral_code') ? ' is-invalid' : ''), 'placeholder' => 'Referral Code', 'readonly' => 'readonly']) !!}
         <div class="invalid-feedback">
             {{ $errors->first('referral_code') }}
         </div>    

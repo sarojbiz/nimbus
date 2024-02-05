@@ -62,7 +62,7 @@ class MemberController extends Controller
             $member->user_type = UserType::Member;
             //$member->created_by = Auth::guard('admin')->user()->id;
             $member->referral_code = $member->generateReferralCode();
-            $member->referral_by = $request->referral_by;
+            $member->referral_by = $request->referral_by ?: NULL;
             $member->save();
 
             $member->member_id = 'M'.($member->id + $this->member_id);
@@ -137,7 +137,7 @@ class MemberController extends Controller
             }
             $member->mobile = $request->mobile;
             $member->status = $request->status;
-            $member->referral_by = $request->referral_by;
+            $member->referral_by = $request->referral_by ?: NULL;
             //$member->created_by = Auth::guard('admin')->user()->id;
             $member->save();
 

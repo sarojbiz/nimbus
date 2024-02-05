@@ -41,6 +41,7 @@ class RegisterController extends APIController
         $input['user_type'] = UserType::Member;
         $user = User::create($input);
 
+        $user->referral_code = $user->generateReferralCode();
         $user->member_id = 'M'.($user->id + $this->baseno);
         $user->save();
 

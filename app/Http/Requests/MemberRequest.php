@@ -27,17 +27,34 @@ class MemberRequest extends FormRequest
         // Check Create or Update
         if ($this->method() == 'PATCH' || $this->method() == 'PUT') {
             $nameRules = 'required|email|max:255|unique:users,email,' . $this->route('member')->id;
+            $referralRule = 'sometimes|nullable|exists:users,referral_code|not_in:' . $this->route('member')->referral_code;
         } else {
             $nameRules = 'required|email|max:255|unique:users,email';
+            $referralRule = 'sometimes|nullable|exists:users,referral_code';
         }
 
         return [
             'email' => $nameRules,   
             'password' => 'sometimes|nullable|min:8',
-            'referral_by' => 'sometimes|nullable|exists:users,referral_code',
+            'referral_by' => $referralRule,
             'first_name' => 'required',
             'last_name' => 'required',
             'status' => 'required',
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'referral_by.exists' =>
+                'Invalid Referral Code.',
+            'referral_by.not_in' =>
+                'One cannot do referral to themselves.'
         ];
     }
 }
