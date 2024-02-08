@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MemberRequest;
 use Exception;
 use App\Member;
+use App\UserAddress;
 use App\Enums\UserType;
 use App\Enums\GeneralStatus;
+use App\Enums\ProvinceType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -38,7 +40,8 @@ class MemberController extends Controller
     {
         $title = 'Add New Member';
         $password = Str::random(8);
-        return view('admin.members.create', compact('title', 'password'));
+        $provinces = ProvinceType::toSelectArray();
+        return view('admin.members.create', compact('title', 'password', 'provinces'));
     }
 
     /**
@@ -67,6 +70,17 @@ class MemberController extends Controller
 
             $member->member_id = 'M'.($member->id + $this->member_id);
             $member->save();
+
+            //save address informations
+            $address = new UserAddress();
+            $address->street_address = $request->street_address;
+            $address->city = $request->city;
+            $address->provience = $request->provience;
+            $address->postal_code = $request->postal_code;
+            $address->country = 'nepal';
+            $address->is_default = 1;
+            $address->user_id = $member->id;          
+            $address->save();
 
             DB::commit();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-success'=>"Member created successfully."]);
@@ -113,7 +127,8 @@ class MemberController extends Controller
     {
         $password = '';
         $title = 'Edit Member';
-        return view('admin.members.edit', compact('title', 'member', 'password'));
+        $provinces = ProvinceType::toSelectArray();
+        return view('admin.members.edit', compact('title', 'member', 'password', 'provinces'));
     }
 
     /**
@@ -140,6 +155,21 @@ class MemberController extends Controller
             $member->referral_by = $request->referral_by ?: NULL;
             //$member->created_by = Auth::guard('admin')->user()->id;
             $member->save();
+
+            //update address
+            $address = UserAddress::where('user_id', $member->id)->get();
+            if( $address->isEmpty()) {
+                $address = new UserAddress();
+                $address->user_id = $member->id;
+            }
+            
+            $address->street_address = $request->street_address;
+            $address->city = $request->city;
+            $address->provience = $request->provience;
+            $address->postal_code = $request->postal_code;
+            $address->country = 'nepal';
+            $address->is_default = 1;
+            $address->save();
 
             DB::commit();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-success'=>"Member updated successfully."]);

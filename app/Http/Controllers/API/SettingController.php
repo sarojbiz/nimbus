@@ -18,10 +18,10 @@ class SettingController extends Controller
     public function getProvinceList()
     {
         $data = [];
-        $provinces = ProvinceType::toArray();
+        $provinces = ProvinceType::toSelectArray();
         if( is_array( $provinces ) && !empty( $provinces ) ) {
             foreach( $provinces as $key => $value ) {
-                $data[] = ['key' => $value, 'value' => $key];
+                $data[] = ['key' => $key, 'value' => ucwords($value)];
             }
         }
         $response = [

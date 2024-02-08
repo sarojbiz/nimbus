@@ -15,11 +15,11 @@ use BenSampo\Enum\Enum;
  */
 final class ProvinceType extends Enum
 {
-    const Province_1 = 1;
-    const Madhesh_Province = 2;
-    const Bagmati_Province = 3;
-    const Gandaki_Province = 4;
-    const Lumbini_Province = 5;
-    const Karnali_Province = 6;
-    const Sudurpashchim_Province = 7;
+    const KoshiProvince = 1;
+    const MadheshProvince = 2;
+    const BagmatiProvince = 3;
+    const GandakiProvince = 4;
+    const LumbiniProvince = 5;
+    const KarnaliProvince = 6;
+    const SudurpashchimProvince = 7;
 }

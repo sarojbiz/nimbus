@@ -13,4 +13,8 @@ class UserAddress extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function member() {
+        return $this->belongsTo('App\Member');
+    }
 }

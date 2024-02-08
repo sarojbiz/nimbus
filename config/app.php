@@ -239,6 +239,7 @@ return [
         'Carbon' => 'Carbon\Carbon',
         'GeneralStatus' => App\Enums\GeneralStatus::class,
         'OrderStatus' => App\Enums\OrderStatus::class,
+        'ProvinceType' => App\Enums\ProvinceType::class
 
     ],
 

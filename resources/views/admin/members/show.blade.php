@@ -44,6 +44,26 @@
                 {!! Form::label(null, $member->mobile, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
+                {!! Form::label(null, 'Street Address :') !!}
+                {!! Form::label(null, optional($member->userAddress)->street_address, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label(null, 'City :') !!}
+                {!! Form::label(null, optional($member->userAddress)->city, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label(null, 'Province :') !!}
+                {!! Form::label(null, ProvinceType::fromValue((int) $member->userAddress->provience)->description, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label(null, 'Postal Code :') !!}
+                {!! Form::label(null, optional($member->userAddress)->postal_code, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label(null, 'Country :') !!}
+                {!! Form::label(null, ucwords(optional($member->userAddress)->country), ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
                 {!! Form::label(null, 'Status :') !!}
                 {!! Form::label(null, GeneralStatus::fromValue($member->status)->description, ['class' => 'form-control']) !!}
             </div>

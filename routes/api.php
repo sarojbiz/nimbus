@@ -48,7 +48,8 @@ Route::post('contact/save', function(Request $request){
 
 Route::middleware('auth:api')->group( function () {
 	
-	Route::get('user', 'API\UserProfileController@show');
+	Route::get('profile', 'API\UserProfileController@show');
+	Route::post('profile', 'API\UserProfileController@update');
 	Route::post('checkout', 'API\CheckoutController@store');
 	Route::get('myorders', 'API\MyOrderController@index');	
 	Route::get('myorder/{order}', 'API\MyOrderController@show');	

@@ -40,6 +40,10 @@ class MemberRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'status' => 'required',
+            'street_address' => 'required',
+            'city' => 'required',
+            'provience' => 'required',
+            'postal_code' => 'required|regex:/\b\d{5}\b/',
         ];
     }
 
@@ -54,7 +58,9 @@ class MemberRequest extends FormRequest
             'referral_by.exists' =>
                 'Invalid Referral Code.',
             'referral_by.not_in' =>
-                'One cannot do referral to themselves.'
+                'One cannot do referral to themselves.',
+            'postal_code.regex' => 
+                'Invalid postal code provided.'    
         ];
     }
 }

@@ -63,6 +63,45 @@
         </div>    
     </div>    
 </div>
+<div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+        <blockquote class="blockquote mb-0">
+            <p class="mb-0">Address Details: </p>
+        </blockquote>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('street_address', 'Street Address * :') !!}       
+        {!! Form::text('street_address', null, ['class' => 'form-control'.($errors->has('street_address') ? ' is-invalid' : ''), 'placeholder' => 'Street Address', 'required' => 'required']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('street_address') }}
+        </div>    
+    </div>  
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('city', 'City * :') !!}       
+        {!! Form::text('city', null, ['class' => 'form-control'.($errors->has('city') ? ' is-invalid' : ''), 'placeholder' => 'City', 'required' => 'required']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('city') }}
+        </div>    
+    </div>    
+</div>
+<div class="form-group row">
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('provience', 'Provience * :') !!}       
+        {!! Form::select('provience', $provinces, null, ['class' => 'form-control'.($errors->has('provience') ? ' is-invalid' : ''), 'placeholder' => '--- Select Provience ---', 'required' => 'required']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('provience') }}
+        </div>    
+    </div>  
+    <div class="col-sm-12 col-md-6">
+        {!! Form::label('postal_code', 'Postal Code * :') !!}       
+        {!! Form::text('postal_code', null, ['class' => 'form-control'.($errors->has('postal_code') ? ' is-invalid' : ''), 'placeholder' => 'Postal Code', 'required' => 'required']) !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('postal_code') }}
+        </div>    
+    </div>    
+</div>
 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 <a href="{{ action('Admin\MemberController@index') }}" class="btn btn-primary">Cancel</a>
 @section('scripts')

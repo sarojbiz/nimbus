@@ -19,6 +19,14 @@ class Member extends Model
     }
 
     /**
+     * Get the user_addresses associated with user
+     */
+    public function userAddress()
+    {
+        return $this->hasOne('App\UserAddress', 'user_id' , 'id');
+    }
+
+    /**
      * Get the orders associated with delivery person
      */
     public function orders()
