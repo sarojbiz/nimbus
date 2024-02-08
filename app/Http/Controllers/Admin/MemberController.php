@@ -128,6 +128,9 @@ class MemberController extends Controller
         $password = '';
         $title = 'Edit Member';
         $provinces = ProvinceType::toSelectArray();
+        $member = Member::where('users.id',$member->id)
+           ->leftJoin('user_addresses', 'user_addresses.user_id', '=', 'users.id')
+           ->first();
         return view('admin.members.edit', compact('title', 'member', 'password', 'provinces'));
     }
 
@@ -157,8 +160,8 @@ class MemberController extends Controller
             $member->save();
 
             //update address
-            $address = UserAddress::where('user_id', $member->id)->get();
-            if( $address->isEmpty()) {
+            $address = UserAddress::where('user_id', $member->id)->first();
+            if( !$address ) {
                 $address = new UserAddress();
                 $address->user_id = $member->id;
             }
@@ -174,7 +177,7 @@ class MemberController extends Controller
             DB::commit();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-success'=>"Member updated successfully."]);
         } catch (\Exception $e) {
-                     
+                        dd($e->getMessage());
             DB::rollback();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-danger'=>"Failed to update member."]);
         } 
