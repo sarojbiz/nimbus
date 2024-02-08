@@ -177,7 +177,7 @@ class MemberController extends Controller
             DB::commit();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-success'=>"Member updated successfully."]);
         } catch (\Exception $e) {
-                        dd($e->getMessage());
+            
             DB::rollback();
             return redirect()->action('Admin\MemberController@index')->withErrors(['alert-danger'=>"Failed to update member."]);
         } 
