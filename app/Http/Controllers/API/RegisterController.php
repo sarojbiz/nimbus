@@ -24,18 +24,26 @@ class RegisterController extends APIController
     public function register(Request $request)
     {
 		$rules = [
-            'name' => 'required',
+            'first_name' => 'required|max:255',
+            'last_name' => 'max:255',
+            'mobile' => 'required|numeric|digits_between:8,10',
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password'			
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'mobile.digits_between' => 'Valid 8 to 10 digit phone number required.'
+        ];
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         }
 
         $input = $request->all();
+        $input['first_name'] = $request->first_name;
+        $input['last_name'] = $request->last_name;
+        $input['mobile'] = $request->mobile;
         $input['password'] = bcrypt($input['password']);
         $input['status'] = GeneralStatus::Enabled;
         $input['user_type'] = UserType::Member;
@@ -46,7 +54,7 @@ class RegisterController extends APIController
         $user->save();
 
         $data['token'] =  $user->createToken('authToken')->accessToken;
-        $data['name'] =  $user->name;
+        $data['name'] =  $user->full_name;
 
         return $this->sendResponse($data, 'User register successfully.');
     }

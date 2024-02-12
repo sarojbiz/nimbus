@@ -28,7 +28,7 @@ class ProfileRequest extends FormRequest
             'first_name' => 'required|max:255',
             'email' =>'required|max:255|unique:users,email,' . $this->user()->id,
             'password' => 'nullable|confirmed|min:6',
-            'mobile' => 'required|max:255|between:8,10',
+            'mobile' => 'required|numeric|digits_between:8,10',
         ];
     }
 
@@ -40,7 +40,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'mobile.between' => 'Valid 8 to 10 digit phone number required.',
+            'mobile.digits_between' => 'Valid 8 to 10 digit phone number required.',
         ];
     }
 }
