@@ -44,11 +44,11 @@ class ProductsImport implements ToModel, WithStartRow
             $product->has_size_color = ($this->formatData(strtolower($row[1])) == 'simple')?false:true;
         }
         $product->pdt_name = $row[0];
-        $product->slug = $this->slugit($row[0]);
-        $product->pdt_brand = $this->prepareBrand($row[2]);
-        $product->category_code = $this->prepareCategory($row[3]);
+        $product->slug = $this->slugit($this->formatData($row[0]));
+        $product->pdt_brand = $this->prepareBrand($this->formatData($row[2]));
+        $product->category_code = $this->prepareCategory($this->formatData($row[3]));
         $product->is_sale_product = $row[4];
-        $product->product_status = $this->prepareStatus($row[5]);
+        $product->product_status = $this->prepareStatus($this->formatData($row[5]));
         $product->pdt_short_description = !empty($row[6])?$row[6]:NULL;
         $product->pdt_long_description = !empty($row[7])?$row[7]:NULL;
         $product->ingredients = !empty($row[8])?$row[8]:NULL;
@@ -129,7 +129,7 @@ class ProductsImport implements ToModel, WithStartRow
     */
     public function prepareSize($size_name)
     {
-        $size_id = Size::where('name', $size_name)->where('status', GeneralStatus::Enabled)->pluck('id')->first();
+        $size_id = Size::where('name', $size_name)->pluck('id')->first();
         if( $size_id ){
             return $size_id;
         }else{
@@ -150,7 +150,7 @@ class ProductsImport implements ToModel, WithStartRow
     */
     public function prepareColor($color_name)
     {
-        $color_id = Color::where('name', $color_name)->where('status', GeneralStatus::Enabled)->pluck('id')->first();
+        $color_id = Color::where('name', $color_name)->pluck('id')->first();
         if( $color_id ){
             return $color_id;
         }else{
@@ -171,7 +171,7 @@ class ProductsImport implements ToModel, WithStartRow
     */
     public function prepareCategory($categoryName)
     {
-        $category = Category::where('category_name', $categoryName)->where('status', GeneralStatus::Enabled)->pluck('category_id')->first();
+        $category = Category::where('category_name', $categoryName)->pluck('category_id')->first();
         if( $category ){
             return $category;
         }else{
@@ -194,7 +194,7 @@ class ProductsImport implements ToModel, WithStartRow
     */
     public function prepareBrand($brand_name)
     {
-        $brand_id = Brand::where('name', $brand_name)->where('status', GeneralStatus::Enabled)->pluck('id')->first();
+        $brand_id = Brand::where('name', $brand_name)->pluck('id')->first();
         if( $brand_id ){
             return $brand_id;
         }else{
@@ -217,7 +217,6 @@ class ProductsImport implements ToModel, WithStartRow
 		if ( !empty($replace) ) {
 			$str = str_replace((array)$replace, ' ', $str);
 		}
-		$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
 		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
 		$clean = strtolower(trim($clean, '-'));
 		$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
