@@ -26,12 +26,22 @@ class ProductsImport implements ToModel, WithStartRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public function formatData($data)
+    {
+        return trim( $data );
+    }    
+    
+    /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
+    */
     public function model(array $row)
     {
         $product = Product::where('pdt_name', $row[0])->first();
         if( !$product ){
             $product = new Product();   
-            $product->has_size_color = ($row[1] == 'simple')?false:true;
+            $product->has_size_color = ($this->formatData(strtolower($row[1])) == 'simple')?false:true;
         }
         $product->pdt_name = $row[0];
         $product->slug = $this->slugit($row[0]);
