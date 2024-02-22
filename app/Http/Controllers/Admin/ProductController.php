@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProductsExport;
-use App\Http\Requests\ProductImportRequest;
+use App\Http\Requests\ImportRequest;
 use App\Imports\ProductsImport;
 use App\Exports\ProductSampleTemplateExport;
 
@@ -448,7 +448,7 @@ class ProductController extends Controller
      * @param  NULL
      * @return Maatwebsite\Excel\Facades\Excel
      */
-    public function importStore(ProductImportRequest $request)
+    public function importStore(ImportRequest $request)
     {
         if ($request->hasFile('excel_file')) {  
             $uploadedFileMimeType = $request->file('excel_file')->getMimeType();
