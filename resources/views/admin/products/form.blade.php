@@ -332,6 +332,7 @@
                 _appendHTML = '<tr>' + _html.html() + '</tr>';
             $('#product_attributes tbody').append( _appendHTML );
             $('#product_attributes tbody tr:last').find(':input').val('');
+            $('#product_attributes tbody tr:last').find(':hidden').val('');
 
             $('#product_attributes tbody tr:last td:eq(0)').find(':input').attr("name", "attribute[" + _count + "][size]");
             $('#product_attributes tbody tr:last td:eq(1)').find(':input').attr("name", "attribute[" + _count + "][color]");
