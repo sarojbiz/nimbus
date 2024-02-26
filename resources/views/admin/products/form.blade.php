@@ -175,7 +175,7 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="{{$attribute->id}}" /></td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span><input type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="{{$attribute->id}}" /></td>
             </tr> 
             {{-- old invetory render for product edit ends --}} 
         @empty  
