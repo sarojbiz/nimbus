@@ -250,12 +250,7 @@ class ProductController extends Controller
             //$product->measurement_unit = $request->measurement_unit;
             $product->product_status = $request->product_status;
             $product->is_sale_product = $request->is_sale_product;
-            $product->created_by = Auth::guard('admin')->user()->id;
-            $product->save();
-
-            $mCode = intval($product->pdt_id + $this->baseMCode);
-            $product->mcode = 'M'.$mCode; 
-            $product->pdt_code = 'M'.$mCode; 
+            $product->updated_by = Auth::guard('admin')->user()->id;
             $product->save();
 
             if ($request->hasFile('feature_image')) {                
@@ -280,14 +275,16 @@ class ProductController extends Controller
             if ($product->variable_product) {
                 //add product attributes values
                 if(is_array( $request->get('attribute') ) && !empty( $request->get('attribute') ))
-                foreach( $request->get('attribute') as $attribute ) {
-                    $inventoryProduct = InventoryProduct::where(['product_id' => $product->pdt_id,
+                foreach( $request->get('attribute') as $attribute ) {		       
+		    $inventoryProduct = InventoryProduct::where(['product_id' => $product->pdt_id,
                                                                  'size_id' => $attribute['size'],
                                                                  'color_id' => $attribute['color']
                                                                  ])
-                                                                ->first();
+			                                         ->first();
                     if($inventoryProduct)
-                    {
+		    {
+			$inventoryProduct->size_id = $attribute['size'];
+                        $inventoryProduct->color_id = $attribute['color'];    
                         $inventoryProduct->regular_price = $attribute['regular_price'];
                         $inventoryProduct->sales_price = $attribute['sales_price'];
                         $inventoryProduct->inventory_sku = $attribute['inventory_sku'];
