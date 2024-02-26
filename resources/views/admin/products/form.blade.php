@@ -175,7 +175,7 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> {!! Form::hidden('attribute[' . $key . '][attribute_id]', {{$attribute->id}}, array('class' => 'attribute_id')) !!}</td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="{{$attribute->id}}" /></td>
             </tr> 
             {{-- old invetory render for product edit ends --}} 
         @empty  
@@ -218,7 +218,7 @@
                             {{ $errors->first('attribute.'. $key .'.barcode') }}
                         </div>               
                     </td> 
-                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> {!! Form::hidden('attribute[' . $key . '][attribute_id]', 0, array('class' => 'attribute_id')) !!} </td>
+                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="0" /></td>
                     </tr>
                 @endforeach
             @else
@@ -260,7 +260,7 @@
                     {{ $errors->first('attribute.0.barcode') }}
                 </div>
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span>{!! Form::hidden('attribute[0][attribute_id]', 0, array('class' => 'attribute_id')) !!} </td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="0" /></td>
             </tr> 
             @endif 
         @endforelse 
