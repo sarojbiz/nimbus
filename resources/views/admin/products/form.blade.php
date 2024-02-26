@@ -340,7 +340,7 @@
             $('#product_attributes tbody tr:last td:eq(4)').find(':input').attr("name", "attribute[" + _count + "][inventory_sku]");
             $('#product_attributes tbody tr:last td:eq(5)').find(':input').attr("name", "attribute[" + _count + "][barcode]");
             $('#product_attributes tbody tr:last td:last').find('.attribute_id').attr("name", "attribute[" + _count + "][attribute_id]");
-            $('#product_attributes tbody tr:last td:last').find('input[name=attribute[' + _count + '][attribute_id]]').val(0);
+            $('#product_attributes tbody tr:last td:last').find('input[name=attribute[' + _count + '][attribute_id]]').val('');
             $('#product_attributes tbody tr:last td:last').find('.clone_minus .fa-minus-square').attr("data-id", 0);
         })
 
