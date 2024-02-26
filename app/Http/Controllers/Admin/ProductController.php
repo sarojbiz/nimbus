@@ -276,16 +276,10 @@ class ProductController extends Controller
                 //add product attributes values
                 if(is_array( $request->get('attribute') ) && !empty( $request->get('attribute') )){
                     foreach( $request->get('attribute') as $attribute ) {
-                        echo '<pre>';
-                        print_r($attribute); 
-                        echo '</pre>';
                         $inventoryProduct = NULL;
-                        if( isset($attribute['attribute_id']) && !empty($attribute['attribute_id']))
+                        if( isset($attribute['attribute_id']) && !empty($attribute['attribute_id']) )
                         {
                             $inventoryProduct = InventoryProduct::find($attribute['attribute_id']);  
-                            echo '<pre>';
-                            print_r($inventoryProduct); 
-                            echo '</pre>';
                         }
                         if(!$inventoryProduct){
                             $inventoryProduct = new InventoryProduct();
@@ -297,7 +291,6 @@ class ProductController extends Controller
                         $inventoryProduct->sales_price = $attribute['sales_price'];
                         $inventoryProduct->inventory_sku = $attribute['inventory_sku'];
                         $inventoryProduct->barcode = $attribute['barcode'];
-                        dd($inventoryProduct); 
                         $inventoryProduct->save();
                     }
                 }
