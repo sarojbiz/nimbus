@@ -218,7 +218,7 @@
                             {{ $errors->first('attribute.'. $key .'.barcode') }}
                         </div>               
                     </td> 
-                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="0" /></td>
+                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></td>
                     </tr>
                 @endforeach
             @else
@@ -260,7 +260,7 @@
                     {{ $errors->first('attribute.0.barcode') }}
                 </div>
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span><inut type="hidden" name="attribute[{{ $key }}][attribute_id]" class="attribute_id" value="0" /></td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span></td>
             </tr> 
             @endif 
         @endforelse 
@@ -340,8 +340,8 @@
             $('#product_attributes tbody tr:last td:eq(4)').find(':input').attr("name", "attribute[" + _count + "][inventory_sku]");
             $('#product_attributes tbody tr:last td:eq(5)').find(':input').attr("name", "attribute[" + _count + "][barcode]");
             $('#product_attributes tbody tr:last td:last').find('.attribute_id').attr("name", "attribute[" + _count + "][attribute_id]");
-            $('#product_attributes tbody tr:last td:last').find('.attribute_id').val('0');
             $('#product_attributes tbody tr:last td:last').find('.clone_minus .fa-minus-square').attr("data-id", 0);
+            $('#product_attributes tbody tr:last td:last').find('.attribute_id').remove();
         })
 
         $('#has_size_color').on('change', function(){
