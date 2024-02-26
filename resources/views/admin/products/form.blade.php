@@ -175,7 +175,7 @@
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> </td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id={{$attribute->id}}></i></span> {{ Form::hidden('attribute[' . $key . '][attribute_id]', {{$attribute->id}}, array('class' => 'attribute_id')) }}</td>
             </tr> 
             {{-- old invetory render for product edit ends --}} 
         @empty  
@@ -218,7 +218,7 @@
                             {{ $errors->first('attribute.'. $key .'.barcode') }}
                         </div>               
                     </td> 
-                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> </td>
+                    <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> {{ Form::hidden('attribute[' . $key . '][attribute_id]', 0, array('class' => 'attribute_id')) }} </td>
                     </tr>
                 @endforeach
             @else
@@ -260,7 +260,7 @@
                     {{ $errors->first('attribute.0.barcode') }}
                 </div>
             </td> 
-            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span> </td>
+            <td> <span class="float-right clone_minus" style="cursor:pointer;"><i class="fas fa-minus-square" data-id=0></i></span>{{ Form::hidden('attribute[0][attribute_id]', 0, array('class' => 'attribute_id')) }} </td>
             </tr> 
             @endif 
         @endforelse 
@@ -339,6 +339,8 @@
             $('#product_attributes tbody tr:last td:eq(3)').find(':input').attr("name", "attribute[" + _count + "][sales_price]");
             $('#product_attributes tbody tr:last td:eq(4)').find(':input').attr("name", "attribute[" + _count + "][inventory_sku]");
             $('#product_attributes tbody tr:last td:eq(5)').find(':input').attr("name", "attribute[" + _count + "][barcode]");
+            $('#product_attributes tbody tr:last td:last').find(':input').attr("name", "attribute[" + _count + "][attribute_id]");
+            $('#product_attributes tbody tr:last td:last').find('.attribute_id').val(0);
             $('#product_attributes tbody tr:last td:last').find('.clone_minus .fa-minus-square').attr("data-id", 0);
         })
 
