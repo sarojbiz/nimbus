@@ -152,7 +152,7 @@
                 </div>                 
             </td>
             <td>
-                {!! Form::number('attribute['. $key .'][regular_price]', $attribute->regular_price, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'placeholder' => 'Regular Price', 'step' => 'any']) !!}    
+                {!! Form::number('attribute['. $key .'][regular_price]', $attribute->regular_price, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Regular Price', 'step' => 'any']) !!}    
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.'. $key .'.regular_price') }}
                 </div>            
@@ -164,13 +164,13 @@
                 </div>               
             </td>
             <td>  
-                {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute->inventory_sku, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'placeholder' => 'SKU']) !!}  
+                {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute->inventory_sku, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'SKU']) !!}  
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.'. $key .'.inventory_sku') }}
                 </div>          
             </td>
             <td>
-                {!! Form::text('attribute[' . $key . '][barcode]', $attribute->barcode, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'placeholder' => 'Barcode']) !!} 
+                {!! Form::text('attribute[' . $key . '][barcode]', $attribute->barcode, ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Barcode']) !!} 
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.'. $key .'.barcode') }}
                 </div>                   
@@ -195,7 +195,7 @@
                         </div>                 
                     </td>
                     <td>
-                        {!! Form::number('attribute['. $key .'][regular_price]', $attribute['regular_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'placeholder' => 'Regular Price', 'step' => 'any']) !!}  
+                        {!! Form::number('attribute['. $key .'][regular_price]', $attribute['regular_price'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.regular_price') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Regular Price', 'step' => 'any']) !!}  
                         <div class="invalid-feedback">
                             {{ $errors->first('attribute.'. $key .'.regular_price') }}
                         </div>              
@@ -207,13 +207,13 @@
                         </div>               
                     </td>
                     <td>  
-                        {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute['inventory_sku'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'placeholder' => 'SKU']) !!}  
+                        {!! Form::text('attribute['. $key .'][inventory_sku]', $attribute['inventory_sku'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.inventory_sku') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'SKU']) !!}  
                         <div class="invalid-feedback">
                             {{ $errors->first('attribute.'. $key .'.inventory_sku') }}
                         </div>         
                     </td>
                     <td>
-                        {!! Form::text('attribute[' . $key . '][barcode]', $attribute['barcode'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'placeholder' => 'Barcode']) !!}   
+                        {!! Form::text('attribute[' . $key . '][barcode]', $attribute['barcode'], ['class' => 'form-control'.($errors->has('attribute.'. $key .'.barcode') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Barcode']) !!}   
                         <div class="invalid-feedback">
                             {{ $errors->first('attribute.'. $key .'.barcode') }}
                         </div>               
@@ -236,7 +236,7 @@
                 </div>                 
             </td>
             <td>
-                {!! Form::number('attribute[0][regular_price]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.regular_price') ? ' is-invalid' : ''), 'placeholder' => 'Regular Price', 'step' => 'any']) !!} 
+                {!! Form::number('attribute[0][regular_price]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.regular_price') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Regular Price', 'step' => 'any']) !!} 
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.0.regular_price') }}
                 </div>               
@@ -248,13 +248,13 @@
                 </div>              
             </td>
             <td>  
-                {!! Form::text('attribute[0][inventory_sku]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.inventory_sku') ? ' is-invalid' : ''), 'placeholder' => 'SKU']) !!}   
+                {!! Form::text('attribute[0][inventory_sku]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.inventory_sku') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'SKU']) !!}   
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.0.inventory_sku') }}
                 </div>        
             </td>
             <td>
-                {!! Form::text('attribute[0][barcode]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.barcode') ? ' is-invalid' : ''), 'placeholder' => 'Barcode']) 
+                {!! Form::text('attribute[0][barcode]', NULL, ['class' => 'form-control'.($errors->has('attribute.0.barcode') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => 'Barcode']) 
                 !!}                  
                 <div class="invalid-feedback">
                     {{ $errors->first('attribute.0.barcode') }}

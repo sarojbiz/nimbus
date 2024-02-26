@@ -276,22 +276,24 @@ class ProductController extends Controller
                 //add product attributes values
                 if(is_array( $request->get('attribute') ) && !empty( $request->get('attribute') )){
                     foreach( $request->get('attribute') as $attribute ) {
-                        $inventoryProduct = NULL;
-                        if( isset($attribute['attribute_id']) && !empty($attribute['attribute_id']) )
-                        {
-                            $inventoryProduct = InventoryProduct::find($attribute['attribute_id']);  
-                        }
-                        if(!$inventoryProduct){
-                            $inventoryProduct = new InventoryProduct();
-                            $inventoryProduct->product_id = $product->pdt_id;
-                        }
-                        $inventoryProduct->size_id = $attribute['size'];
-                        $inventoryProduct->color_id = $attribute['color'];    
-                        $inventoryProduct->regular_price = $attribute['regular_price'];
-                        $inventoryProduct->sales_price = $attribute['sales_price'];
-                        $inventoryProduct->inventory_sku = $attribute['inventory_sku'];
-                        $inventoryProduct->barcode = $attribute['barcode'];
-                        $inventoryProduct->save();
+                        if(!empty($attribute['regular_price']) && !empty($attribute['inventory_sku']) && !empty($attribute['barcode'])){
+                            $inventoryProduct = NULL;
+                            if( isset($attribute['attribute_id']) && !empty($attribute['attribute_id']) )
+                            {
+                                $inventoryProduct = InventoryProduct::find($attribute['attribute_id']);  
+                            }
+                            if(!$inventoryProduct){
+                                $inventoryProduct = new InventoryProduct();
+                                $inventoryProduct->product_id = $product->pdt_id;
+                            }
+                            $inventoryProduct->size_id = $attribute['size'];
+                            $inventoryProduct->color_id = $attribute['color'];    
+                            $inventoryProduct->regular_price = $attribute['regular_price'];
+                            $inventoryProduct->sales_price = $attribute['sales_price'];
+                            $inventoryProduct->inventory_sku = $attribute['inventory_sku'];
+                            $inventoryProduct->barcode = $attribute['barcode'];
+                            $inventoryProduct->save();
+                        }                        
                     }
                 }
             }    
