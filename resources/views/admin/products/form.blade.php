@@ -129,8 +129,8 @@
                 <th>{!! Form::label('header_color', 'Color :') !!}</th>
                 <th>{!! Form::label('header_regular_price', 'Regular Price * :') !!}</th>
                 <th>{!! Form::label('header_sales_price', 'Sales Price :') !!}</th>
-                <th>{!! Form::label('header_inventory_sku', 'SKU :') !!}</th>
-                <th>{!! Form::label('header_barcode', 'Barcode :') !!}</th>
+                <th>{!! Form::label('header_inventory_sku', 'SKU * :') !!}</th>
+                <th>{!! Form::label('header_barcode', 'Barcode * :') !!}</th>
                 <th>&nbsp;<span class="float-right" id="clone_plus" style="cursor:pointer;"><i class="fas fa-plus-square"></i></th>            
             </tr>
         </thead>
