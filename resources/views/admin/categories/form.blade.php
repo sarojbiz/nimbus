@@ -47,7 +47,7 @@
     <div id="image-preview" class="image-preview">
         {!! Form::label('image-upload', 'Category Image', ['class' => 'image-label', 'id' =>
         'image-label'])!!}
-        {!! Form::file('category_image', ['class' => 'form-control-file image-upload', 'id' => 'image-upload', 'accept' => 'image/*', 'required' => 'required']); !!}
+        {!! Form::file('category_image', ['class' => 'form-control-file image-upload', 'id' => 'image-upload', 'accept' => 'image/*']); !!}
     </div>
     <p><small>Recommended Size: 800 X 800</small></p>
     <div class="invalid-feedback{{($errors->has('category_image') ? ' d-block' : '')}}">
