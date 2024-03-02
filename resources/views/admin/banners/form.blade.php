@@ -35,7 +35,7 @@
         'image-label'])!!}
         {!! Form::file('image', ['class' => 'form-control-file image-upload', 'id' => 'image-upload', 'accept' => 'image/*']); !!}
     </div>
-    <p><small>Recommended Size: 950 X 400</small></p>
+    <p><small>Recommended Size: 1920 X 768</small></p>
     <div class="invalid-feedback{{($errors->has('image') ? ' d-block' : '')}}">
         {{ $errors->first('image') }}
     </div>

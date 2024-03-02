@@ -222,7 +222,7 @@ class BannerController extends Controller
      */
     public function uploadBannerAsset($data, REQUEST $request)
 	{        
-        $resize = ['full' => array(950, null), 'thumb' => array(640, null)];
+        $resize = ['full' => array(1920, null), 'thumb' => array(768, null)];
         $name = 'image';
         $directory = public_path('uploads/banners/');
 		$thumbdirectory = public_path('uploads/banners/thumb/');
