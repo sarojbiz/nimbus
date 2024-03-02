@@ -56,7 +56,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'category_code', 'category_id')->where('status', 1);        
+        return $this->hasMany(Product::class, 'category_code', 'category_id')->where('product_status', 1);        
     }   
 
     /**
